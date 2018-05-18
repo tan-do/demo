@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        #demo {width: 100px;height: 100px;background: #eee;margin: 50px auto; display: flex;}
+        input[type=checkbox] {
+            width: 30px;
+            height: 30px;
+            -webkit-appearance: none;
+            border: 1px solid #d2d5d7;
+            padding: 0;
+            background-color: #f8f8f8;
+            background-image: none;
+            border-color: #d2d5d7;
+            box-shadow: none;
+            border-radius: 0;
+           outline: none;
+            margin: auto;
+            position: relative;
+
+        }
+
+        input[type=checkbox]:checked,
+        input[type=checkbox].checked {
+            border-color: red;
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+       
+
+       
+
+        input[type=checkbox]:checked::before,
+        input[type=checkbox].checked::before {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            text-align: center;
+            line-height: 30px;
+            float: left;
+            position: relative;            
+            left: -1px;
+            top: -1px;
+            content: '√';
+            display: block;
+            background-size: cover;
+            color: #3e99ff;
+            font-size: 20px;
+            font-family: "uc-pc-std-iconfont";
+        }
+
+
+        
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <input type="checkbox" id = "test">
+
+    </div>
+
+    <script>
+            var oInput = document.getElementById('test');
+            oInput.onclick=function(){
+                console.log(this.checked);
+            }
+    </script>
+</body>
+
+</html>
