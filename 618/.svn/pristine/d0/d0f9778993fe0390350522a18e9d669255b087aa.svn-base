@@ -1,0 +1,14 @@
+var side = $('\
+             \
+')
+
+
+$('.shouqi').click(function(){
+    $('.side-bar').hide();
+    $('.side-bar-show').show();
+})
+
+$('.zhankai').click(function(){
+    $('.side-bar').show();
+    $('.side-bar-show').hide()
+})

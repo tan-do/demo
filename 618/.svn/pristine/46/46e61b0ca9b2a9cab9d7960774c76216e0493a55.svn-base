@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <title>百强网618省钱攻略-预售好价</title>
+    <meta name="keywords" content="百强网618省钱攻略-预售好价" />
+    <meta name="description" content="百强网618省钱攻略-预售好价">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=2017042102" />
+    <script src="js/head.js"></script>
+</head>
+<body>
+<header class="bq-navbar">
+    <div data-page="index" class="bq-navbar-inner flex flex-pack-justify flex-align-center">
+        <div class="head-back flex flex-align-center" onclick="historyPlus()"><span class="back"></span></div>
+        <div class="head-text search-box ">预售好价</div>
+        <div class="head-right flex flex-align-center js-icon-bar" onclick="toShare()"><span class="search"></span></div>
+    </div>
+</header>
+<div class="scroll-wrapper" id="app">
+    <div class="viewport-new yushou" >
+        <!--banner-->
+        <div class="top-banner">
+            <img src="./img/banner_yshj.png">
+        </div>
+        <!--预售好价-->
+        <div class="main-box main-box2 yushou-list">
+            <div class="top-nav-list top-nav-list-fixed">
+                <div class="head flex flex-pack-around flex-align-center">
+                    <div v-for="(item,index) in typeNav" v-on:click="change(index)" :class="item.class">{{item.name}}</div>
+                </div>
+            </div>
+            <ul>
+                <li v-for="item in bkqdList">
+                    <a :href="item.sourceUrlForOrder" >
+                        <img :src="item.logo">
+                        <div class="box-in box-in4">
+                            <div class="title">{{item.name}}</div>
+                            <div class="price">{{item.price}}</div>
+                            <div class="jian">预定立减20元</div>
+                            <div class="button">前往抢购</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="loading">加载中。。。</div>
+        </div>
+    </div>
+    <div class="comfoot"></div>
+</div>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/NativeShare.js"></script>
+<script type="text/javascript" src="/public/js/cookie.js?v=201711061600"></script>
+<!-- 自动打开淘宝app -->
+<script type="text/javascript" src="/public/js/tbwakeup.js?v=201711061600"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            //主会场列表
+            typeNav: [
+                {'name':'最新预售','class':'check'},
+                {'name':'百货','class':''},
+                {'name':'美食','class':''},
+                {'name':'服饰','class':''},
+                {'name':'美妆','class':''},
+                {'name':'数码家电','class':''},
+                {'name':'数码家电','class':''},
+                {'name':'数码家电','class':''},
+                {'name':'数码家电','class':''},
+                {'name':'数码家电','class':''},
+                {'name':'数码家电','class':''},
+            ],
+            bkqdList:[],
+            page:1,
+            size:8,
+            category:'',
+            loading : false,
+        },
+        created: function () {
+            var vm = this;
+            vm.loadPage(true);
+            window.onscroll = function () {
+                vm.scroll();
+            }
+        },
+        methods: {
+            loadPage:function (clear) {
+                var vm = this;
+                var _url = '/HuodongApi/hd618/hd2018_yshj';
+                $('.loading').show();
+                $.get(_url,{
+                    page:vm.page,
+                    size:vm.size,
+                    category:vm.category,
+                } ,function (data) {
+                    if(data.code == 100){
+                        var ismore = false;
+                        if(clear){
+                            vm.bkqdList = [];
+                        }
+                        for (var ii in data.data.productList){
+                            vm.bkqdList.push(data.data.productList[ii]);
+                            ismore = true;
+                        }
+                        if(ismore){
+                            vm.loading = false;
+                        }else{
+                            vm.loading = true;
+                        }
+                        console.log();
+                    }else{
+                        console.log('err1');
+                        vm.loading = true;
+                    }
+                    $('.loading').hide();
+                })
+            },
+            change:function (e) {
+                var vm = this;
+                for(var ii in vm.typeNav){
+                    vm.typeNav[ii].class = '';
+                }
+                vm.typeNav[e].class = 'check';
+                vm.category = vm.typeNav[e].name != '最新预售' ? vm.typeNav[e].name : '';
+                vm.page = 1;
+                vm.bkqdList = [];
+                vm.loadPage(true);
+            },
+            scroll() {
+                var vm = this;
+                var _nowPos = $(window).scrollTop();
+                if(_nowPos > 170){
+                    $('.top-nav-list').addClass('top-nav-list-fixed');
+                }else{
+                    $('.top-nav-list').removeClass('top-nav-list-fixed');
+                }
+                // 滚到底部动态加载下页
+                if(((_nowPos +$(window).height())+100) >= $(document).height()){
+                    if(vm.loading == false){
+                        vm.loading = true;
+                        vm.page ++;
+                        vm.loadPage();
+                    }
+                }
+            }
+        }
+    });
+</script>
+<script>
+    var nativeShare = new NativeShare()
+    var shareData = {
+        title: 'NativeShare',
+        desc: 'NativeShare是一个整合了各大移动端浏览器调用原生分享的插件',
+        // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
+        link: 'https://github.com/fa-ge/NativeShare',
+        icon: 'https://pic3.zhimg.com/v2-080267af84aa0e97c66d5f12e311c3d6_xl.jpg',
+        // 不要过于依赖以下两个回调，很多浏览器是不支持的
+        success: function() {
+            alert('success')
+        },
+        fail: function() {
+            alert('fail')
+        }
+    }
+</script>
+<script src="js/foot.js"></script>
+</body>
+</html>

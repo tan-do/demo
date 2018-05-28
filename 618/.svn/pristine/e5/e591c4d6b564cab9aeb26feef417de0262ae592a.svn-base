@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <title>百强网618省钱攻略-超级便宜货</title>
+    <meta name="keywords" content="百强网618省钱攻略-超级便宜货" />
+    <meta name="description" content="百强网618省钱攻略-超级便宜货">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=2017042102" />
+    <script src="js/head.js"></script>
+</head>
+<body>
+<header class="bq-navbar">
+    <div data-page="index" class="bq-navbar-inner flex flex-pack-justify flex-align-center">
+        <div class="head-back flex flex-align-center" onclick="historyPlus()"><span class="back"></span></div>
+        <div class="head-text search-box ">超级便宜货</div>
+        <div class="head-right flex flex-align-center js-icon-bar" onclick="toShare()"><span class="search"></span></div>
+    </div>
+</header>
+<div class="scroll-wrapper" id="app">
+    <div class="viewport-new chaopianyi" >
+        <!--banner-->
+        <div class="top-banner">
+            <img src="./img/banner_cjpyh.png">
+        </div>
+        <!--超级便宜货-->
+        <div class="main-box main-box2 chaopianyi-list">
+            <div class="head flex flex-pack-around flex-align-center">
+                <div v-for="(item,index) in typeNav" v-on:click="change(index)" :class="item.class">{{item.name}}</div>
+            </div>
+            <ul>
+                <li v-for="item in bkqdList">
+                    <a href="" >
+                        <img :src="item.logo">
+                        <div class="box-in box-in2">
+                            <div class="title">{{item.title}}</div>
+                            <div class="price">秒杀价：<span>前5000件</span></div>
+                            <div class="button">前往抢购</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom-nav">
+        <ul class="flex flex-align-center">
+            <li class="flex flex-pack-center flex-align-center">618主会场</li>
+            <li class="flex flex-pack-center flex-align-center morehc" onclick="toOpenHc()"><i class="hc"></i>更多会场
+                <div class="hc-more">
+                    <div>会场一</div>
+                    <div>会场二</div>
+                    <div>会场三</div>
+                    <div>会场四</div>
+                </div>
+            </li>
+            <li class="flex flex-pack-center flex-align-center"><i class="app"></i>打开APP</li>
+        </ul>
+    </div>
+    <div id="share">
+        <ul class="share">
+            <li onclick="call()"><img src="./img/fxtc_3.png"><div>通用分享</div></li>
+            <li onclick="call('wechatFriend')"><img src="./img/fxtc_1.png"><div>微信好友</div></li>
+            <li onclick="call('wechatTimeline')"><img src="./img/fxtc_2.png"><div>朋友圈</div></li>
+            <li onclick="call('qqFriend')"><img src="./img/fxtc_4.png"><div>QQ</div></li>
+            <li onclick="call('qZone')"><img src="./img/fxtc_5.png"><div>QQ空间</div></li>
+            <li onclick="call('weibo')"><img src="./img/fxtc_6.png"><div>微博</div></li>
+        </ul>
+    </div>
+</div>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/NativeShare.js"></script>
+<script type="text/javascript" src="/public/js/cookie.js?v=201711061600"></script>
+<!-- 自动打开淘宝app -->
+<script type="text/javascript" src="/public/js/tbwakeup.js?v=201711061600"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            //主会场列表
+            typeNav: [
+                {'name':'精选','class':'check'},
+                {'name':'1-3元','class':''},
+                {'name':'4-5元','class':''},
+                {'name':'6-8元','class':''},
+                {'name':'9-10元','class':''},
+            ],
+            bkqdList:[]
+        },
+        created: function () {
+            this.loadPage();
+        },
+        methods: {
+            loadPage:function () {
+                var vm = this;
+                var _url = '/Plugapi/popupPage/getListOfChina';
+                $.get(_url ,function (data) {
+                    if(data.code == 100){
+                        vm.bkqdList = data.data.productList.slice(0,4);
+                        console.log();
+                    }else{
+                        console.log('err1');
+                    }
+                })
+            },
+            change:function (e) {
+                var vm = this;
+                for(var ii in vm.typeNav){
+                    vm.typeNav[ii].class = '';
+                }
+                vm.typeNav[e].class = 'check';
+            }
+        }
+    });
+</script>
+<script>
+    var nativeShare = new NativeShare()
+    var shareData = {
+        title: 'NativeShare',
+        desc: 'NativeShare是一个整合了各大移动端浏览器调用原生分享的插件',
+        // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
+        link: 'https://github.com/fa-ge/NativeShare',
+        icon: 'https://pic3.zhimg.com/v2-080267af84aa0e97c66d5f12e311c3d6_xl.jpg',
+        // 不要过于依赖以下两个回调，很多浏览器是不支持的
+        success: function() {
+            alert('success')
+        },
+        fail: function() {
+            alert('fail')
+        }
+    }
+</script>
+<script src="js/foot.js"></script>
+</body>
+</html>

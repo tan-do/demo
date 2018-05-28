@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+
+    <title>百强网618省钱攻略-超级便宜货</title>
+    <meta name="keywords" content="百强网618,活动,红包,省钱攻略,超级便宜货"/>
+    <meta name="description" content="百强网618的活动专题，618的正确剁手姿势专题。为广大强友精选618超值单品，让快乐不要停下来。"/>
+    <meta property="og:site_name" content="百强网">
+    <meta property="og:description" content="百强网618的活动专题，618的正确剁手姿势专题。为广大强友精选618超值单品，让快乐不要停下来。">
+    <meta property="og:image" content="https://www.qiang100.com.cn/huodong/618/2018/img/share_logo.png">
+    <meta property="og:title" content="百强网618省钱攻略-超级便宜货">
+    <meta property="og:url" content="/huodong/618/2018/chaopianyi.html">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=2017042102" />
+    <script src="js/head.js"></script>
+    <script type="text/javascript" src="https://tajs.qq.com/stats?sId=59300190" charset="UTF-8"></script>
+</head>
+<body>
+<div style='margin:0 auto;width:0;height:0;overflow:hidden;'>
+    <img src="https://www.qiang100.com.cn/huodong/618/2018/img/share_logo.png">
+</div>
+<header class="bq-navbar">
+    <div data-page="index" class="bq-navbar-inner flex flex-pack-justify flex-align-center">
+        <div class="head-back flex flex-align-center" onclick="historyPlus()"><span class="back"></span></div>
+        <div class="head-text search-box ">超级便宜货</div>
+        <div class="head-right flex flex-align-center js-icon-bar"><span class="menu"></span></div>
+        <div class="right-menu" style="display: none;">
+            <div class="right-menu-in">
+                <div class="right-menu-bg"></div>
+                <div class="right-menu-main">
+                    <div class="menu-head menu-head-index">
+                        百强网导航
+                        <span class="menu-close"></span>
+                    </div>
+                    <ul>
+                        <li><a href="/index.php?g=Home&m=search&a=index"><i class="i-search"></i><span>搜索</span></a></li>
+                        <li><a href="/"><i class="i-index"></i><span>回到首页</span></a></li>
+                        <li><a href="/pinpai/"><i class="i-pinpai"></i><span>挑选品牌</span></a></li>
+                        <li><a href="/zhi/"><i class="i-zhi"></i><span>品牌特价</span></a></li>
+                        <li><a href="/zhi/jiukuaijiu/"><i class="i-99"></i><span>9块9包邮</span></a></li>
+                        <li><a href="/xiu/"><i class="i-bbs"></i><span>百强论坛</span></a></li>
+                        <li><a href="/zhi/youhuiquan/"><i class="i-coin"></i><span>搜优惠券</span></a></li>
+                        <li><a href="/huiyuan/"><i class="i-ucenter"></i><span>个人中心</span></a></li>
+                        <li><a href="/guanyu.html"><i class="i-about"></i><span>关于百强</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="scroll-wrapper" id="app">
+    <div class="viewport-new chaopianyi" >
+        <!--banner-->
+        <div class="top-banner">
+            <a href="https://s.click.taobao.com/8eD8VQw" onclick="check_cps(this);" isconvert="1">
+            <img src="./img/banner_cjpyh.png"></a>
+        </div>
+        <!--超级便宜货-->
+        <div class="main-box main-box2 chaopianyi-list">
+            <div class="head flex flex-pack-around flex-align-center">
+                <div v-for="(item,index) in typeNav" v-on:click="change(index)" :class="item.class">{{item.name}}</div>
+            </div>
+            <ul>
+                <li v-for="item in bkqdList">
+                    <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1">
+                        <img :src="item.logo">
+                        <div class="box-in box-in2">
+                            <div class="title">{{item.name}}</div>
+                            <div class="price">{{item.price}}<span v-if="item.sales>0">已有{{item.sales}}人抢购</span></div>
+                            <div class="button button_cpy">前往抢购</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="comfoot"></div>
+</div>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/NativeShare.js"></script>
+<script type="text/javascript" src="/public/js/cookie.js?v=201711061600"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            //主会场列表
+            typeNav: [
+                {'name':'精选','class':'check'},
+                {'name':'1-3元','class':''},
+                {'name':'4-5元','class':''},
+                {'name':'6-8元','class':''},
+                {'name':'9-10元','class':''},
+            ],
+            bkqdList:[],
+            page:1,
+            size:20,
+            price:0,
+            loading : false,
+        },
+        created: function () {
+            var vm = this;
+            vm.loadPage(true);
+            window.onscroll = function () {
+                vm.scroll();
+            }
+        },
+        methods: {
+            loadPage:function (clear) {
+                var vm = this;
+                var _url = '/HuodongApi/hd618/hd2018_cjpy';
+                $('.loading').show();
+                $.get(_url,{
+                    page:vm.page,
+                    size:vm.size,
+                    price:vm.price,
+                } ,function (data) {
+                    if(data.code == 100){
+                        var ismore = false;
+                        if(clear){
+                            vm.bkqdList = [];
+                        }
+                        for (var ii in data.data.productList){
+                            vm.bkqdList.push(data.data.productList[ii]);
+                            ismore = true;
+                        }
+                        if(ismore){
+                            vm.loading = false;
+                        }else{
+                            vm.loading = true;
+                        }
+                        console.log();
+                    }else{
+                        console.log('err1');
+                        vm.loading = true;
+                    }
+                    $('.loading').hide();
+                })
+            },
+            change:function (e) {
+                var vm = this;
+                for(var ii in vm.typeNav){
+                    vm.typeNav[ii].class = '';
+                }
+                vm.typeNav[e].class = 'check';
+                vm.price = e;
+                vm.page = 1;
+                vm.bkqdList = [];
+                vm.loadPage(true);
+            },
+            scroll:function () {
+                var vm = this;
+                var _nowPos = $(window).scrollTop();
+                if(_nowPos > 170){
+                    $('.top-nav-list').addClass('top-nav-list-fixed');
+                }else{
+                    $('.top-nav-list').removeClass('top-nav-list-fixed');
+                }
+                // 滚到底部动态加载下页
+                if(((_nowPos +$(window).height())+100) >= $(document).height()){
+                    if(vm.loading == false){
+                        vm.loading = true;
+                        vm.page ++;
+                        vm.loadPage();
+                    }
+                }
+            }
+        }
+    });
+</script>
+<script>
+    var nativeShare = new NativeShare();
+    var shareData = {
+        title: '百强网618省钱攻略',
+        desc: '百强网618省钱攻略',
+        // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
+        link: 'https://m.qiang100.com/huodong/618/2018/index.html',
+        icon: 'https://m.qiang100.com/huodong/618/2018/img/banner.png',
+        // 不要过于依赖以下两个回调，很多浏览器是不支持的
+        success: function() {
+            alert('success')
+        },
+        fail: function() {
+            alert('fail')
+        }
+    }
+</script>
+<script type="text/javascript" src="/public/js/ads.js"></script>
+<script type="text/javascript" src="/public/js/cps.js?v=201805261202"></script>
+<script src="js/foot.js?v=2018052601"></script>
+</body>
+</html>

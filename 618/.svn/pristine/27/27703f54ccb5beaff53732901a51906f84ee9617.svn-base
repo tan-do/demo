@@ -1,0 +1,220 @@
+body{min-width: 1200px;}
+
+.content {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.index-banner {
+    width: 100%;
+    height: 480px;
+    min-width: 1200px;
+    background: url('../img/index-banner.png') no-repeat center;
+    float: left;
+}
+
+.index-content {
+    width: 100%;
+    height: auto;
+    min-width: 1200px;
+    padding-top: 50px;
+    padding-bottom:50px;
+    background: #F40643;
+    float: left;
+}
+
+/* 会场 */
+.sec-hc {
+    width: 100%;
+    height: 184px;
+    float: left;
+}
+
+.sec-hc-big {
+    width: 480px;
+    height: inherit;
+    float: left;
+    img{height: 178px;float: left;margin-right: 2px;width: 238px;display: block;outline: none;}
+    img:hover{opacity: .8;}
+    a:last-child img{position: relative;left: 1px;}
+}
+
+
+
+.sec-hc-small {
+    width: 720px;
+    height: inherit;
+    float: left;
+    ul li {
+        width: 144px;
+        height: inherit;
+        float: left;
+        margin-bottom:2px;
+    }
+    ul li img{
+        width: 142px;
+        float: right;
+
+    }
+    ul li img:hover{opacity: .8;}
+    
+}
+
+
+
+h1.title{
+    width: 100%;
+    height: 120px;
+    float: left;
+    line-height: 120px;
+    text-align: center;
+    position: relative;
+    a{position: absolute;top:0;right: 0;}
+    a:hover{opacity: .8;}
+}
+
+.sec-hd{width: 100%;height:auto;background: #333;float: left;
+    ul li{width: 300px;height: 178px;float: left;background: pink;
+    }
+    ul li img{width: 100%;}
+    ul li img:hover{opacity: .8;}
+}
+
+/* 电商大促 */
+.sec-ds{
+    width: 100%;
+    height: 351px;
+    background: transparent;
+    float: left;
+    ul li{width: 236px;height: 351px;float: left;position: relative;margin-right:5px;
+        p{width: 100%;height: 50px;position: absolute;bottom: -8px;
+            font-size: 20px;text-align: center;font-weight: 600;left: 0;
+
+        }
+    }
+    ul li:nth-child(5n){margin-right: 0;}
+    ul li img:hover{opacity: .8;}
+}
+
+
+.sec-list{
+    width: 100%;
+    height: auto;
+    float: left;
+    background: transparent;
+    ul li{
+        width: 236px;height:391px;float: left;background: #fff;
+        margin-right: 5px;
+        margin-bottom:5px;
+        position: relative;
+        cursor: default;
+        .sec-img{width: 236px;height: 236px;}
+ 
+        p {
+            width: 100%;
+            height: 26px;
+            /* background: pink; */
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #333;
+            padding: 0 14px;
+            font-weight: 600;
+            position: relative;
+            top: 10px;
+            span {
+                color: #FF1413
+            }
+        }
+        
+        p.p3 {
+            color: #8F8F8F;
+            font-weight: 500;
+        }
+        
+        p:last-child {
+            text-align: center;
+            height: 42px;
+            top: 20px;
+            a {
+                display: inline-block;
+                width: 204px;
+                height: 42px;
+                background: #FF0100;
+                line-height: 42px;
+                color: #fff;
+                font-size: 18px;
+            }
+            a:hover {
+                opacity: .8;
+            }
+        }
+    }
+
+    ul li:nth-child(5n){
+        margin-right: 0;
+    }
+}
+
+
+
+//超级便宜货
+.sec-py {
+    ul li {
+
+        p.p3 {
+            color: #23C052;
+            font-weight: 600;
+        }
+
+    }
+}
+
+//爆款清单
+.sec-bk{
+    .sec-num{width: 100%;height: 53px;background:  url('../img/index-bk-hot.png') no-repeat center;position: absolute;top: 183px;left: 0;
+        text-align: center;line-height: 73px;color: #fff;font-size: 16px;
+    }
+
+    ul li{height: 364px;
+        p.p2{
+            span{margin-right: 3px;font-size: 16px;vertical-align: middle;}
+            color: #8F8F8F;
+            font-size: 14px;
+        }
+        p:last-child{
+            
+            span {
+                width: 90px;
+                height: 37px;
+                background:  url('../img/index-bk-icon.png') no-repeat center;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 37px;
+                color: #fff;
+
+            }
+            a {
+                width: 100px;
+                height: 36px;
+                line-height: 36px;
+                font-size: 16px;
+                vertical-align: middle;
+                margin:0 5px;
+            }
+        }
+    }
+}
+
+//预售
+.sec-ys{
+    ul li {
+        p.p3 {
+            color: #666;
+            font-weight: 600;
+        }
+
+
+    }
+    
+}

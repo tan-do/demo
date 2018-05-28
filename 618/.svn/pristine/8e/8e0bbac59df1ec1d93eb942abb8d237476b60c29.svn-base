@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <title>百强网618省钱攻略-爆款清单</title>
+    <meta name="keywords" content="百强网618省钱攻略-爆款清单" />
+    <meta name="description" content="百强网618省钱攻略-爆款清单">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=2017042102" />
+    <script src="js/head.js"></script>
+</head>
+<body>
+<header class="bq-navbar">
+    <div data-page="index" class="bq-navbar-inner flex flex-pack-justify flex-align-center">
+        <div class="head-back flex flex-align-center" onclick="historyPlus()"><span class="back"></span></div>
+        <div class="head-text search-box ">爆款清单</div>
+        <div class="head-right flex flex-align-center js-icon-bar" onclick="toShare()"><span class="search"></span></div>
+    </div>
+</header>
+<div class="scroll-wrapper" id="app">
+    <div class="viewport-new baokuan" >
+        <!--banner-->
+        <div class="top-banner">
+            <img src="./img/banner_bkqd.png">
+        </div>
+        <!--爆款清单-->
+        <div class="baokuan-list">
+            <ul>
+                <li v-for="(item,index) in bkqdList">
+                    <a :href="item.sourceUrlForOrder" >
+                        <div class="logo">
+                            <img :src="item.logo">
+                            <i>{{index}}</i>
+                            <div class="logo-bot">已有88人抢购</div>
+                        </div>
+                        <div class="box-in">
+                            <div class="title">{{item.name}}</div>
+                            <div class="price">秒杀价：<span>前5000件</span></div>
+                            <div class="coupon">
+                                <div class="coupon-l">券100</div>
+                                <div class="coupon-r">前往抢购</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="comfoot"></div>
+</div>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/NativeShare.js"></script>
+<script type="text/javascript" src="/public/js/cookie.js?v=201711061600"></script>
+<!-- 自动打开淘宝app -->
+<script type="text/javascript" src="/public/js/tbwakeup.js?v=201711061600"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            bkqdList:[],
+            page:1,
+            size:8,
+            category:'',
+            loading : false,
+        },
+        created: function () {
+            var vm = this;
+            vm.loadPage(true);
+            window.onscroll = function () {
+                vm.scroll();
+            }
+        },
+        methods: {
+            loadPage:function (clear) {
+                var vm = this;
+                var _url = '/HuodongApi/hd618/hd2018_yshj';
+                $('.loading').show();
+                $.get(_url,{
+                    page:vm.page,
+                    size:vm.size,
+                    category:vm.category,
+                } ,function (data) {
+                    if(data.code == 100){
+                        var ismore = false;
+                        if(clear){
+                            vm.bkqdList = [];
+                        }
+                        for (var ii in data.data.productList){
+                            vm.bkqdList.push(data.data.productList[ii]);
+                            ismore = true;
+                        }
+                        if(ismore){
+                            vm.loading = false;
+                        }else{
+                            vm.loading = true;
+                        }
+                        console.log();
+                    }else{
+                        console.log('err1');
+                        vm.loading = true;
+                    }
+                    $('.loading').hide();
+                })
+            },
+            scroll() {
+                var vm = this;
+                var _nowPos = $(window).scrollTop();
+                // 滚到底部动态加载下页
+                if(((_nowPos +$(window).height())+100) >= $(document).height()){
+                    if(vm.loading == false){
+                        vm.loading = true;
+                        vm.page ++;
+                        vm.loadPage();
+                    }
+                }
+            }
+        }
+    });
+</script>
+<script>
+    var nativeShare = new NativeShare()
+    var shareData = {
+        title: 'NativeShare',
+        desc: 'NativeShare是一个整合了各大移动端浏览器调用原生分享的插件',
+        // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
+        link: 'https://github.com/fa-ge/NativeShare',
+        icon: 'https://pic3.zhimg.com/v2-080267af84aa0e97c66d5f12e311c3d6_xl.jpg',
+        // 不要过于依赖以下两个回调，很多浏览器是不支持的
+        success: function() {
+            alert('success')
+        },
+        fail: function() {
+            alert('fail')
+        }
+    }
+</script>
+<script src="js/foot.js"></script>
+</body>
+</html>
