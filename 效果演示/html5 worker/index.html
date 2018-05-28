@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="date.js"></script>
+</head>
+<body>
+	<script>
+
+		// html5 worker不支持跨域
+		var w;
+ 
+		function startWorker() {
+		    if(typeof(Worker) !== "undefined") {
+		        if(typeof(w) == "undefined") {
+		            w = new Worker("date.js");
+		        }
+		        w.onmessage = function(event) {
+		            document.getElementById("result").innerHTML = event.data;
+		        };
+		    } else {
+		        document.getElementById("result").innerHTML = "抱歉，你的浏览器不支持 Web Workers...";
+		    }
+		}
+		 
+		function stopWorker() 
+		{ 
+		    w.terminate();
+		    w = undefined;
+		}
+
+
+	</script>
+</body>
+</html>

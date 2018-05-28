@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/public.css">
+	<link href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+	<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<style>
+		.content{width: 1200px;margin: 0 auto;}
+		.pdt-50{padding-top: 30px;}
+		.fColor{color: #fff !important}
+		.rColor{color: #BB051E !important;}
+		/*固定导航栏*/
+		header{width:100%;height: 60px;background: #fff;border-bottom: 1px solid #ddd;position: fixed;opacity: 0.8;float: left;z-index: 999;}
+		.hdLogo{height: 60px;float: left;}
+		.hdLogo img{height:60px;}
+		header nav{float: right;width: 300px;/*background: red;*/height: 60px;}
+		header ul li a{float:left;padding-left:20px;line-height: 60px;font-size: 1rem;/*position: relative;left: 50px;*/}
+		/*大屏Banner*/
+		.dhBanner{width: 100%;height: 560px;background:#222 url(img/banner.jpg) 100%;margin-top: 60px;float: left;}
+		.dhBanner p{color: #fff;font-size: 20px;text-align: center;}
+		.dhPic{width: 860px;height: 280px;background:  url(img/headBg.png);background-size: 100%;text-align: center;margin:  60px auto 30px auto;}
+		.dhPic img{height:220px;margin-top:20px;}
+		.headerBg h3{color: #fff;margin-top: 20px;}
+		.daojishi{width: 380px;height: 100px;/*background: red;*/overflow: hidden;margin: 30px auto;}
+		.daojishi ul{width:420px;overflow: hidden;/*background: #fff;*/ }
+		.daojishi ul li{width: 76px;height: 76px;margin-right:20px;float: left;border-radius: 40px;margin-top: 10px;border:2px solid #fff;color: #fff;font-size:16px;}
+		.daojishi ul li span{text-align: center;display: block;padding-top: 16px;}
+
+
+		/*大会介绍*/
+		.about{width: 100%;background: #fff;height: 440px;float: left;}
+		.meet{width: 100%;background:#eee;}
+		.meetItem{width: 600px;float: left;text-align: center;}
+		.meetLink a{display: inline-block;width: 120px;height: 40px;border:1px solid #EF5311;text-align: center;line-height: 40px;}
+		.meetTitle{display: block; width: 200px;height: 50px;text-align: center;line-height: 50px;font-size: 20px;margin:0 auto;border-bottom: 2px solid #EF5311}
+		.meetInfo{font-size: 16px;padding: 50px;line-height: 30px;text-indent: 2rem;text-align: left;}
+		.zhibo{width: 400px;height: 250px;/*background: red;*/margin: 50px auto;}
+		.zhibo img{width: 400px;height: 250px;}
+
+
+		/*大会嘉宾*/
+		.overFlow{width: 1200px;overflow: hidden;}
+		.jiaBin{width: 100%;height: 560px;background: #eee;float: left;position: relative;}
+		.jbFlex{width: 1200px;height: 560px;/*background: red;*/display: flex;margin: 0 auto;}
+		.jbItem{flex: 1;/*background: red;*/margin-right: 20px;}
+		.jbPic{width: 100%;height:500px;/*background: pink;*/ }
+		.jbPic ul{margin-top: 50px;float: left;}
+		.jbPic ul li {width: 110px;height: 160px;/*background: red;*/float: left;margin-left: 30px;}
+		.jbImg{width: 100px;height: 100px;/*background: pink;*/border-radius: 55px;border:5px solid #fff;}
+		.jbImg:hover{animation: krx 1s ease }
+		.jbPic p{text-align: center;position: relative;}
+
+
+		.jbVoice{width: 100%;height: 400px;/*background: red;*/overflow: hidden;}
+		.jbVoice li{line-height: 50px;font-size: 16px;position: relative;left: 100px;top:60px;}
+		.jbVoice li a{font-size: 16px;}
+
+		/*议程*/
+		.yicheng{width: 100%;height: 600px;background:#fff;float: left;}
+		.shijianline{width: 2px ;height: 420px;background:#F48C1D;float: left; margin-top: 30px;}
+		.shijianzhou{width: 599px;height: 420px;float: left;/*background: red;*/margin-top: 30px;}
+		.shijianzhou ul li{width: 599px;height: 70px;line-height: 70px;font-size: 20px;text-align: right;position: relative;right: 20px;}
+		.oppShijian ul li{text-align: left;padding-left: 40px;}
+		.shijianline ul li{width: 40px;height: 70px;/*background: red;*/position: relative;left: -20px;}
+		.shijianline ul li img{width: 20px;height: 20px;margin: 25px 11px;}
+		.lineImgs img{width: 10px !important;height: 10px !important;margin: 30px 16px !important;}
+
+		/*往期议程*/
+		.wangQi{width: 100%;height: 320px;background: #eee url(img/huodong.png);float: left;}
+		.swiperWanqi{height: 130px;width: 1000px;margin: 30px auto;background: transparent;}
+		.swiperWanqi img{width: 100%;}
+		.swiper-slide {
+				height: 130px;
+		        text-align: center;
+		        font-size: 18px;
+		        background: #fff;
+		}
+
+		/*底部*/
+		.jiaotong{width: 100%;height: 600px;background: #fff;min-width: 1200px;}
+		.baiduditu{width: 1200px;height: 400px;/*background: red;*/margin-top: 50px;}
+
+		.hezuo{width: 100%;height: 400px;background: #fff;float: left;}
+		.hezuo img{width: 1000px;margin: 50px 100px;/*background: red;*/ }
+		footer{width: 100%;height: 100px;background: #373634;text-align: center;color: #fff;position: relative;float: left;}
+		footer p{position: relative;top:30px;}
+
+		.us a{width: 150px;height: 40px;background:#F08C1D;color: #fff;text-align: center;line-height: 40px;border-radius: 40px;display:block;position: relative;left: 850px;top:-10px;}
+		.us a:hover{background: #373634; border: 2px solid #F08C1D;}
+
+
+
+		/*媒体查询*/
+
+		@media screen and (max-width: 1200px){
+
+			html{zoom:83.3%;}
+			
+			
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="content">
+			<div class="hdLogo">
+				<img src="http://www.zyah.cn/Static/Home/images/logo.png" alt="">
+			</div>
+			<nav>
+				<ul><li><a href="#" class="toHome">首页</a></li></ul>
+				<ul><li><a href="#"  class="toSec1">大会简介</a></li></ul>
+				<ul><li><a href="#" class="toSec2">嘉宾</a></li></ul>
+				<ul><li><a href="#" class="toSec3">议程</a></li></ul>
+			</nav>
+		</div>
+	</header>
+	<div class="dhBanner">
+		<div class="content">
+			<div class="dhPic">
+				<img src="img/dahui.png" alt="" class="wow zoomIn">
+			</div>
+			<p>距离安徽智游+互联网大会还有</p>
+			<div class="daojishi">
+					<ul class="countdown">
+					  <li class="wow bounceIn" data-wow-duration="1s" data-wow-delay="0.5s"> <span class="days">00</span>
+					    <p class="days_ref">天</p>
+					  </li>
+					  <li class="wow bounceIn" data-wow-duration="1s" data-wow-delay="1s"> <span class="hours">00</span>
+					    <p class="hours_ref">时</p>
+					  </li>
+					  <li class="wow bounceIn" data-wow-duration="1s" data-wow-delay="1.5s"> <span class="minutes">00</span>
+					    <p class="minutes_ref">分</p>
+					  </li>
+					  <li class="wow bounceIn" data-wow-duration="1s" data-wow-delay="2s"> <span class="seconds">00</span>
+					    <p class="seconds_ref">秒</p>
+					  </li>
+					</ul>				
+			</div>
+		</div>
+	</div>
+
+
+	<section>
+			<div class="about">
+		<div class="content">
+			<div class="meetItem">
+				<a href="#" class="meetTitle pdt-50">大会介绍</a>
+				<p class="meetInfo wow slideInLeft">安徽智游网服务的具体内容由本网站根据实际情况提供,本网站保留随时变更、中断或终止部分或全部安徽智游网服务的权利。 四、会员的义务 1.会员在申请使用本网站安安徽智游网服务的具体内容由本网站根据实际情况提供,本网站保留随时变更、中断或终止部分或全部安徽智游网服务的权利。 四、会员的义务 1.会员在申请使用本网站安...</p>
+				<p class="meetLink"><a href="#">查看更多</a></p>
+			</div>
+			<div class="meetItem">
+				<a href="#"  class="meetTitle pdt-50">直播互动</a>
+				<div class="zhibo wow slideInRight" data-wow-duration="0.5s">
+					<img src="img/zb1.jpg" alt="">
+
+<!-- 
+					<div class="swiper-container swiper-zhibo">
+				        <div class="swiper-wrapper">
+				            <div class="swiper-slide">
+				            	<img src="img/zb1.jpg" alt="">
+				            </div>
+				            <div class="swiper-slide">Slide 2</div>
+				            <div class="swiper-slide">Slide 3</div>
+				            <div class="swiper-slide">Slide 4</div>
+				            <div class="swiper-slide">Slide 5</div>
+				            <div class="swiper-slide">Slide 6</div>
+				            <div class="swiper-slide">Slide 7</div>
+				            <div class="swiper-slide">Slide 8</div>
+				            <div class="swiper-slide">Slide 9</div>
+				            <div class="swiper-slide">Slide 10</div>
+				        </div>
+				        
+				        <div class="swiper-pagination"></div>
+				    </div> -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</section>
+
+	<section>
+		<div class="jiaBin">
+			<div class="content" >
+				<div class="jbFlex">
+					<div class="jbItem">
+						<p class="pdt-50"><a href="#" class="meetTitle " >大会嘉宾</a></p>
+						<div class="jbPic  wow slideInLeft">
+							<ul>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (1).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (2).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (3).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (4).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+							</ul>
+							<ul>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (5).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (6).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (7).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+								<li>
+									<p style="padding-bottom: 10px;">
+										<img class="jbImg" src="img/jiabin (8).jpg"></img>
+									</p>
+									<p>百度创始人</p>
+									<p>李彦宏</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="jbItem">
+						<p class="pdt-50"><a href="#" class="meetTitle " >访谈声音</a></p>
+						<ul class="jbVoice  wow slideInRight">
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打造安徽智慧专业</a></li>
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打造安徽</a></li>
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打造安徽智业</a></li>
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打造安徽业</a></li>
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打徽智慧专业</a></li>
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打徽智慧专业</a></li>
+							<li><a href="#">打造安徽智慧打造安徽智慧专业导游IP打造安徽智慧专业</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+	</section>
+
+
+<section>
+		<div class="yicheng">
+				<div class="content">
+					<p class="pdt-50"><a href="#" class="meetTitle">活动议程</a></p>
+					<div class="shijianzhou">
+						<ul class="wow slideInLeft" data-wow-duration="0.5s" >
+							<li>18:00</li>
+							<li>18:10</li>
+							<li>互联网大会流程介绍</li>
+							<li>18:30</li>
+							<li>互联网大会嘉宾发言</li>
+							<li>18:40</li>
+						</ul>
+					</div>
+					<div class="shijianline">
+						<ul >
+							<li class="lineImgs">
+								<img src="img/dot1.png" alt="">
+							</li>
+							<li>
+								<img src="img/dot2.png" alt="">
+							</li>
+							<li class="lineImgs">
+								<img src="img/dot1.png" alt="">
+							</li>
+							<li>
+								<img src="img/dot2.png" alt="">
+							</li>
+							<li class="lineImgs">
+								<img src="img/dot1.png" alt="">
+							</li>
+							<li>
+								<img src="img/dot2.png" alt="">
+							</li>
+						</ul>
+					</div>
+					<div class="shijianzhou oppShijian" >
+						<ul class="wow slideInRight" data-wow-duration="0.5s">
+							<li>入场仪式</li>
+							<li>演讲：创业者如何过冬</li>
+							<li class="rColor">18:20</li>
+							<li>互联网大会正式开始</li>
+							<li>18:35</li>
+							<li>互联网大会正式开始</li>
+						</ul>
+					</div>
+
+				</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="wangQi">
+				<p class="pdt-50"><a href="#" class="meetTitle fColor " >往期回顾</a></p>
+				<!-- Swiper -->
+			    <div class="swiper-container swiperWanqi">
+			        <div class="swiper-wrapper">
+			            <div class="swiper-slide"><img src="img/20142.png" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20151.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20152.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20161.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20164.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20142.png" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20151.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20152.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20161.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20164.jpg" alt=""></div>
+			            <div class="swiper-slide"><img src="img/20166.jpg" alt=""></div>
+			        </div>			      
+
+			            <div class="swiper-button-prev"></div>
+    					<div class="swiper-button-next"></div>
+			    </div>
+
+
+		</div>
+	</section>
+
+
+	<div class="hezuo">
+		<div class="content">
+			<p class="pdt-50"><a href="#" class="meetTitle" >战略合作伙伴</a></p>
+			<p><img src="img/project_43e2c8ce.png" alt=""></p>
+		</div>
+	</div>
+	<footer>
+		<div class="content">
+			<p>如有赞助、推广、票务、会务及其他问题，请邮件联系我们</p>
+			<p>邮箱：372496683@qq.com</p>
+			<div class="us">
+				<a href="#">联系我们</a>
+			</div>
+		</div>
+	</footer>
+
+       <script>
+              new WOW().init();
+
+                var winWidth=$(window).width();
+                alert(winWidth);
+                if(winWidth>1200){
+                	alert(true)
+                }else{
+                	alert(false)
+                }
+
+              // 页面平滑滚动
+              	var homeHeight=$(".dhBanner").height();
+
+  		function scrollTan(scrollName,topPx,scrollTime){
+		     	 	$(scrollName).click(function(){   
+				        $("html,body").animate({scrollTop:topPx},scrollTime);
+				    });  
+		              	
+		     }
+
+
+
+		
+
+
+
+		scrollTan(".toHome","0px","500");
+		scrollTan(".toSec1","560px","500");
+		scrollTan(".toSec2","1000px","500");
+		scrollTan(".toSec3","1560px","500");
+
+        </script>
+        <script src="js/swiper.min.js"></script>
+        <!-- Initialize Swiper -->
+	    <script>
+	    var swiper = new Swiper('.swiperWanqi', {
+	        pagination: '.swiper-pagination',
+	        slidesPerView: 4,
+	        paginationClickable: true,
+	        spaceBetween: 30,
+	        freeMode: true,
+	        prevButton:'.swiper-button-prev',
+			nextButton:'.swiper-button-next',
+			autoplay:2000,
+	    });
+	    </script>
+</body>
+</html>

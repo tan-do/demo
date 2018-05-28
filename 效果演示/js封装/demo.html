@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="tanui.css">
+</head>
+<body>
+	<div id="navi"></div>
+
+	<script>
+function MyClass(id){//组件模板
+   var _self = document.getElementById(id);//根据id获取组件
+   this.addP=function(){//定义类方法，这里是显示内容为1233
+      alert("hello")
+   }
+}
+	</script>
+
+	<script>
+var mc = new MyClass('rrr');//初始化组件
+mc.addP();//组件调用方法
+	</script>
+</body>
+</html>
