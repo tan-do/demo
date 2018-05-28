@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式</title>
+	<script src="reg.js"></script>
+</head>
+<body>
+	<script>
+		var str = "visit Runoob!";
+ var reg = /\s|,|;/;
+
+
+        // search 方法可使用字符串作为参数。字符串参数会转换为正则表达式：
+		var n = str.search(reg)        
+		console.log(n);
+
+		var txt= str.replace(reg,"query")
+		console.log(txt)
+	</script>
+</body>
+</html>
