@@ -1,6 +1,15 @@
 //淘点金
 (function(win,doc){
-    win.bq_page_tbPid = 'mm_112928821_17178470_71510584';//qiang100.com.cn-X09999
+    win.bq_page_tbPid = '';
+    if (win.location.host === 'www.qiang100.com' ) {
+        win.bq_page_tbPid = 'mm_112928821_13812316_71524415';//qiang100.com-X09999
+    } else {
+        if (win.location.hash === '#xxl') {
+            win.bq_page_tbPid = 'mm_112928821_17178470_71514593';//qiang100.com.cn-X09997
+        } else {
+            win.bq_page_tbPid = 'mm_112928821_17178470_71510584';//qiang100.com.cn-X09999
+        }
+    }
 
     var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
     if (!win.alimamatk_show) {

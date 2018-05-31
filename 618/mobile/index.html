@@ -18,7 +18,8 @@
     <meta property="og:url" content="/huodong/618/2018/index.html">
 
 
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=2017042102" />
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=20170531" />
+    <link rel="stylesheet" type="text/css" href="css/com618bar.css?v=2017042102" />
     <script src="js/head.js"></script>
     <script type="text/javascript" src="https://tajs.qq.com/stats?sId=59300190" charset="UTF-8"></script>
 </head>
@@ -59,7 +60,7 @@
     <div class="viewport-new" >
         <!--banner-->
         <div class="top-banner">
-            <a href="https://s.click.taobao.com/8eD8VQw" onclick="check_cps(this);" isconvert="1">
+            <a :href="huicangList[0]['url']" onclick="check_cps(this);" isconvert="1">
             <img src="./img/banner.png?v=001"></a>
         </div>
         <!--会场-->
@@ -97,7 +98,7 @@
                             <div class="price">秒杀价：<span>{{item.price}}</span></div>
                             <div class="time" v-if="item.isstart">正在疯狂秒杀中</div>
                             <div class="time" v-else="">{{item.onlinestarttime2}}开抢</div>
-                            <div class="button button_index">提前秒杀 到店抢购</div>
+                            <div class="button button_index">提前加购，到点秒杀</div>
                         </div>
                     </a>
                 </li>
@@ -130,7 +131,7 @@
             </div>
         </div>
         <!--爆款清单-->
-        <div class="main-box main-box2">
+        <div class="main-box main-box2 main-ys">
             <div class="head head1">
                 <img src="./img/title-bkqd.png">
             </div>
@@ -138,15 +139,16 @@
                 <li v-for="item in bkqdList">
                     <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1">
                         <img :src="item.logo">
-                        <div class="box-in box-in3">
-                            <div class="title">{{item.name}}</div>
-                            <div class="price">{{item.price}} <span>券后价</span></div>
-                            <div class="coupon">
-                                <!--<div class="coupon-l">券100</div>-->
-                                <div class="coupon-r">前往抢购</div>
-                            </div>
-                        </div>
                     </a>
+                    <div class="box-in box-in3">
+                        <div class="title">{{item.name}}</div>
+                        <div class="price">{{item.price}} <span v-if="item.couponValue > 0">券后价</span></div>
+                        <div class="coupon" v-if="item.couponValue > 0">
+                            <a :href="item.couponUrl" onclick="check_cps(this);" isconvert="1"><div class="coupon-l">领{{item.couponValue}}元券</div></a>
+                            <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1"><div class="coupon-r">前往抢购</div></a>
+                        </div>
+                        <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1" v-else=""><div class="button button_index" >前往抢购</div></a>
+                    </div>
                 </li>
             </ul>
             <div class="more">
@@ -155,7 +157,7 @@
             </div>
         </div>
         <!--预售好价-->
-        <div class="main-box main-box2">
+        <div class="main-box main-box2 main-ys">
             <div class="head head1">
                 <img src="./img/title-yshj.png">
             </div>
@@ -163,19 +165,37 @@
                 <li v-for="item in yshjList">
                     <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1">
                         <img :src="item.logo">
-                        <div class="box-in box-in4">
-                            <div class="title">{{item.name}}</div>
-                            <div class="price">{{item.price}}</div>
-                            <!--<div class="jian">预定立减20元</div>-->
-                            <div class="button button_index">前往抢购</div>
-                        </div>
                     </a>
+                    <div class="box-in box-in3">
+                        <div class="title">{{item.name}}</div>
+                        <div class="price">{{item.price}}</div>
+                        <!--<div class="jian">预定立减20元</div>-->
+                        <div class="coupon" v-if="item.couponValue > 0">
+                            <a :href="item.couponUrl" onclick="check_cps(this);" isconvert="1"><div class="coupon-l">领{{item.couponValue}}元券</div></a>
+                            <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1"><div class="coupon-r">前往预订</div></a>
+                        </div>
+                        <a :href="item.sourceUrlForOrder+'?is_mobile=1&useapp=1'" isconvert="1" v-else=""><div class="button button_index" >前往预订</div></a>
+                    </div>
                 </li>
             </ul>
             <div class="more">
                 <a :href="huodongList[3]['url']">
                 <img src="./img/more-ys.png"></a>
             </div>
+        </div>
+
+        <!--预售好价-->
+        <div class="main-box main-box3">
+            <div class="head head1">
+                <img src="./img/index/dcrk_head.png">
+            </div>
+            <ul>
+                <li v-for="item in dcrkList">
+                    <a :href="item.url">
+                        <img :src="item.img">
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="comfoot"></div>
@@ -186,7 +206,10 @@
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/NativeShare.js"></script>
-
+<script>
+    var zhuhuichangUrl = "";
+    var huicangUrlType = 'yr';//链接类型，默认参数：yr 预热，61 6.1日
+</script>
 
 <script type="text/javascript" src="/public/js/cookie.js?v=201711061600"></script>
 <script>
@@ -195,21 +218,21 @@
         data: {
             //主会场列表
             huicangList: [
-                {'img':'./img/index/hc1.png','url':'https://s.click.taobao.com/8eD8VQw'},
-                {'img':'./img/index/hc2.png','url':'https://s.click.taobao.com/0x9jSQw'}
+                {'img':'./img/index/hc1.png','url':'https://s.click.taobao.com/kQU8RQw'},//主会场
+                {'img':'./img/index/hc2.png','url':'https://s.click.taobao.com/e5y7RQw'}//聚划算
             ],
             //分类区块列表
             fenleiList: [
-                {'img':'./img/index/qk1.png','url':'https://s.click.taobao.com/3MtKRQw'},
-                {'img':'./img/index/qk2.png','url':'https://s.click.taobao.com/RscKRQw'},
-                {'img':'./img/index/qk3.png','url':'https://s.click.taobao.com/dQRORQw'},
-                {'img':'./img/index/qk4.png','url':'https://s.click.taobao.com/7LqNRQw'},
-                {'img':'./img/index/qk5.png','url':'https://s.click.taobao.com/9RjCRQw'},
-                {'img':'./img/index/qk6.png','url':'https://s.click.taobao.com/8F0ORQw'},
-                {'img':'./img/index/qk7.png','url':'https://s.click.taobao.com/UocCRQw'},
-                {'img':'./img/index/qk8.png','url':'https://s.click.taobao.com/WpWJRQw'},
-                {'img':'./img/index/qk9.png','url':'https://s.click.taobao.com/U51CRQw'},
-                {'img':'./img/index/qk10.png','url':'https://s.click.taobao.com/lbpBRQw'}
+                {'img':'./img/index/qk1.png','url':'https://s.click.taobao.com/Pwe5IQw'},//服饰
+                {'img':'./img/index/qk2.png','url':'https://s.click.taobao.com/Ysf5IQw'},//美妆
+                {'img':'./img/index/qk3.png','url':'https://s.click.taobao.com/GjL7RQw'},//母婴
+                {'img':'./img/index/qk4.png','url':'https://s.click.taobao.com/BVS5IQw'},//食品
+                {'img':'./img/index/qk5.png','url':'https://s.click.taobao.com/gmB5IQw'},//数码
+                {'img':'./img/index/qk6.png','url':'https://s.click.taobao.com/KZ55IQw'},//家电
+                {'img':'./img/index/qk7.png','url':'https://s.click.taobao.com/L6Y6IQw'},//箱包
+                {'img':'./img/index/qk8.png','url':'https://s.click.taobao.com/Bsf6IQw'},//运动
+                {'img':'./img/index/qk9.png','url':'https://s.click.taobao.com/v0G6RQw'},//家具
+                {'img':'./img/index/qk10.png','url':'https://s.click.taobao.com/8YT6RQw'}//家装
             ],
             //百强活动列表
             huodongList: [
@@ -218,12 +241,20 @@
                 {'img':'./img/index/hd3.png','url':'./baokuan.html'},
                 {'img':'./img/index/hd4.png','url':'./yushou.html'},
             ],
+            //
+            dcrkList: [
+                {'img':'./img/index/dcrk_1.png','url':'https://union-click.jd.com/jdc?e=0&p=AyIHUytaJQMiQwpDBUoyS0IQWhkeHAxFBUYPCllHGAdFBwtSQEJLcitMV1pFIEVedB1LQglGa1YHWmUebR1VYVYAVwUzUF9PAgllM2UOHmlWGlscHhMDSRhfBAIXDFEbUBQDIgJdGVgUChMGVitbFAMTBlIbXxcKIjdVGmtebBM3UhxTEgQRBFceaxUGEQFWGVsUBRMCURhrEjISBVEaXxICGwdVGDVUMiI3ZStrFzIS&t=W1dCFFlQCxxQVwhPRE5XDVULR0VFUFcZPGsCQEpQcgseOgpbV1sI'},
+                {'img':'./img/index/dcrk_2.png','url':'https://sugs.suning.com/u2zDI1ht'},
+                {'img':'./img/index/dcrk_3.png','url':'https://prom.gome.com.cn/html/prodhtml/topics/201805/15/618gonglue.html'},
+                {'img':'./img/index/dcrk_4.png','url':'https://www.amazon.cn/'},
+                {'img':'./img/index/dcrk_5.png','url':'http://sale.yhd.com/act/uAUxPqGcz3X.html'},
+            ],
             //百强活动类别列表
             hdlbList: [
-                {'img':'./img/index/tp1.png','url':'https://m.qiang100.com/zhi/youhuiquan/'},
-                {'img':'./img/index/tp2.png','url':'https://m.qiang100.com/pinpai/'},
-                {'img':'./img/index/tp3.png','url':'https://m.qiang100.com/zhi/'},
-                {'img':'./img/index/tp4.png','url':'https://m.qiang100.com/index.php?g=&m=Zhi&a=history'},
+                {'img':'./img/index/tp1.png','url':'/zhi/youhuiquan/'},
+                {'img':'./img/index/tp2.png','url':'/pinpai/'},
+                {'img':'./img/index/tp3.png','url':'/zhi/'},
+                {'img':'./img/index/tp4.png','url':'/index.php?g=&m=Zhi&a=history'},
             ],
             mshzList:[],    //秒杀汇总
             mshzLoad:false,
@@ -236,6 +267,96 @@
         },
         created: function () {
             var vm = this;
+
+            //qiang100.com来源
+            if (document.domain === 'm.qiang100.com') {
+                if(huicangUrlType == 'yr') {
+                    vm.huicangList[0].url = 'https://s.click.taobao.com/AJD7VQw';//主会场
+                    vm.huicangList[1].url = 'https://s.click.taobao.com/uc1iEQw';//聚划算
+
+                    vm.fenleiList[0].url = 'https://s.click.taobao.com/gABdEQw';//服饰
+                    vm.fenleiList[1].url = 'https://s.click.taobao.com/I4mcEQw';//美妆
+                    vm.fenleiList[2].url = 'https://s.click.taobao.com/wBbiEQw';//母婴
+                    vm.fenleiList[3].url = 'https://s.click.taobao.com/9FUcEQw';//食品
+                    vm.fenleiList[4].url = 'https://s.click.taobao.com/NMFgEQw';//数码
+                    vm.fenleiList[5].url = 'https://s.click.taobao.com/OnggEQw';//家电
+                    vm.fenleiList[6].url = 'https://s.click.taobao.com/tz9hEQw';//箱包
+                    vm.fenleiList[7].url = 'https://s.click.taobao.com/exHcEQw';//运动
+                    vm.fenleiList[8].url = 'https://s.click.taobao.com/sjYhEQw';//家具
+                    vm.fenleiList[9].url = 'https://s.click.taobao.com/fjjhEQw';//家装
+                }else if(huicangUrlType == '61'){
+                    vm.huicangList[0].url = 'https://s.click.taobao.com/uLbZEQw';//主会场
+                    vm.huicangList[1].url = 'https://s.click.taobao.com/Y57ZEQw';//聚划算
+
+                    vm.fenleiList[0].url = 'https://s.click.taobao.com/yMbYEQw';//服饰
+                    vm.fenleiList[1].url = 'https://s.click.taobao.com/xXFREQw';//美妆
+                    vm.fenleiList[2].url = 'https://s.click.taobao.com/FmvQEQw';//母婴
+                    vm.fenleiList[3].url = 'https://s.click.taobao.com/5qRREQw';//食品
+                    vm.fenleiList[4].url = 'https://s.click.taobao.com/49yOEQw';//数码
+                    vm.fenleiList[5].url = 'https://s.click.taobao.com/PygPEQw';//家电
+                    vm.fenleiList[6].url = 'https://s.click.taobao.com/lK8OEQw';//箱包
+                    vm.fenleiList[7].url = 'https://s.click.taobao.com/19SYEQw';//运动
+                    vm.fenleiList[8].url = 'https://s.click.taobao.com/DJxPEQw';//家具
+                    vm.fenleiList[9].url = 'https://s.click.taobao.com/wFFQEQw';//家装
+                }
+            }else{
+                //信息流来源
+                if (window.location.hash === '#xxl') {
+                    if(huicangUrlType == 'yr') {
+                        vm.huicangList[0].url = 'https://s.click.taobao.com/WdZ4IQw';//主会场
+                        vm.huicangList[1].url = 'https://s.click.taobao.com/xsD4IQw';//聚划算
+
+                        vm.fenleiList[0].url = 'https://s.click.taobao.com/SlK3IQw';//服饰
+                        vm.fenleiList[1].url = 'https://s.click.taobao.com/KW33IQw';//美妆
+                        vm.fenleiList[2].url = 'https://s.click.taobao.com/4z54IQw';//母婴
+                        vm.fenleiList[3].url = 'https://s.click.taobao.com/Z4Y3IQw';//食品
+                        vm.fenleiList[4].url = 'https://s.click.taobao.com/bPZ3IQw';//数码
+                        vm.fenleiList[5].url = 'https://s.click.taobao.com/6Fc3IQw';//家电
+                        vm.fenleiList[6].url = 'https://s.click.taobao.com/08g3IQw';//箱包
+                        vm.fenleiList[7].url = 'https://s.click.taobao.com/Hnp3IQw';//运动
+                        vm.fenleiList[8].url = 'https://s.click.taobao.com/Seq3IQw';//家具
+                        vm.fenleiList[9].url = 'https://s.click.taobao.com/kdy3IQw';//家装
+                    }else if(huicangUrlType == '61'){
+                        vm.huicangList[0].url = 'https://s.click.taobao.com/XWHAEQw';//主会场
+                        vm.huicangList[1].url = 'https://s.click.taobao.com/Wor7EQw';//聚划算
+
+                        vm.fenleiList[0].url = 'https://s.click.taobao.com/RVi7EQw';//服饰
+                        vm.fenleiList[1].url = 'https://s.click.taobao.com/ywa7EQw';//美妆
+                        vm.fenleiList[2].url = 'https://s.click.taobao.com/7tk7EQw';//母婴
+                        vm.fenleiList[3].url = 'https://s.click.taobao.com/MKe7EQw';//食品
+                        vm.fenleiList[4].url = 'https://s.click.taobao.com/yaq7EQw';//数码
+                        vm.fenleiList[5].url = 'https://s.click.taobao.com/Cd87EQw';//家电
+                        vm.fenleiList[6].url = 'https://s.click.taobao.com/jFu6EQw';//箱包
+                        vm.fenleiList[7].url = 'https://s.click.taobao.com/srQ7EQw';//运动
+                        vm.fenleiList[8].url = 'https://s.click.taobao.com/rAN7EQw';//家具
+                        vm.fenleiList[9].url = 'https://s.click.taobao.com/QCF7EQw';//家装
+                    }
+                    vm.huodongList[0].url = './miaosha.html#xxl';
+                    vm.huodongList[1].url = './chaopianyi.html#xxl';
+                    vm.huodongList[2].url = './baokuan.html#xxl';
+                    vm.huodongList[3].url = './yushou.html#xxl';
+                }else{
+                    if(huicangUrlType == 'yr') {
+                        //默认链接
+                    }else if(huicangUrlType == '61'){
+                        vm.huicangList[0].url = 'https://s.click.taobao.com/z4MNEQw';//主会场
+                        vm.huicangList[1].url = 'https://s.click.taobao.com/2xxMEQw';//聚划算
+
+                        vm.fenleiList[0].url = 'https://s.click.taobao.com/bw8MEQw';//服饰
+                        vm.fenleiList[1].url = 'https://s.click.taobao.com/BeiJEQw';//美妆
+                        vm.fenleiList[2].url = 'https://s.click.taobao.com/S5RMEQw';//母婴
+                        vm.fenleiList[3].url = 'https://s.click.taobao.com/jZ3KEQw';//食品
+                        vm.fenleiList[4].url = 'https://s.click.taobao.com/cmoMEQw';//数码
+                        vm.fenleiList[5].url = 'https://s.click.taobao.com/3zJKEQw';//家电
+                        vm.fenleiList[6].url = 'https://s.click.taobao.com/eURNEQw';//箱包
+                        vm.fenleiList[7].url = 'https://s.click.taobao.com/qTrLEQw';//运动
+                        vm.fenleiList[8].url = 'https://s.click.taobao.com/X8bLEQw';//家具
+                        vm.fenleiList[9].url = 'https://s.click.taobao.com/atPKEQw';//家装
+                    }
+                }
+            }
+
+            zhuhuichangUrl = vm.huicangList[0]['url'];
             window.onscroll = function () {
                 vm.scroll();
             }
@@ -245,17 +366,17 @@
             scroll:function () {
                 var vm = this;
                 var _nowPos = $(window).scrollTop();
+                vm.loadMiaosha();
+                vm.loadPianyi();
+                vm.loadBaokuan();
+                vm.loadYushou();
                 if(_nowPos > 300){
-                    vm.loadMiaosha();
                 }
                 if(_nowPos > 700){
-                    vm.loadPianyi();
                 }
                 if(_nowPos > 1100){
-                    vm.loadBaokuan();
                 }
                 if(_nowPos > 1500){
-                    vm.loadYushou();
                 }
             },
             //秒杀汇总
@@ -366,7 +487,7 @@
             setTimeout(function() {
                 var cpsUrl = '';
                 if (window.location.host == 'm.qiang100.com.cn') {
-                    cpsUrl = 'https://s.click.taobao.com/8eD8VQw';
+                    cpsUrl = 'https://s.click.taobao.com/kQU8RQw';
                 } else {
                     cpsUrl = 'https://s.click.taobao.com/ObS9VQw';
                 }
@@ -377,8 +498,13 @@
     });
 
 </script>
+
+<!-- 全屏弹出广告 -->
+<script type="text/javascript" data-no-merge="1" id="async_loader_plus_common_pop"> (function(){ var url = "/index.php?g=Home&m=Helper&a=include_async&file=Public%2Fpop%2Fcommon%2Fmain&source="+(encodeURIComponent(window.location.href))+"&ts="+(new Date().getTime()); var loaderId = "async_loader_plus_common_pop"; var loadX = function($) { $.get(url,function(r){ if(!r) { return; } $("#"+loaderId).after(r); $("#"+loaderId).remove(); }); }; if (typeof $ != "undefined") { loadX($); } else { console.log("jquery not found, async loader failed"); } })();</script>
+
 <script type="text/javascript" src="/public/js/ads.js"></script>
-<script type="text/javascript" src="/public/js/cps.js?v=201805261202"></script>
-<script src="js/foot.js?v=2018052601"></script>
+<script type="text/javascript" src="/public/js/cps.js?v=2018052902"></script>
+<script src="js/foot.js?v=2018052902"></script>
+<script src="js/com618bar.js?v=2018052902"></script>
 </body>
 </html>

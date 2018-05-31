@@ -94,7 +94,7 @@
             <div class="nav-in">
                 <ul class="nav-in-left">
                     <li class="first"></li>
-                    <li class="hover index"><a>首页</a></li>
+                    <li class="hover index"><a href="/">首页</a></li>
                     <li class=""><a href="/pinpai/">选品牌</a></li>
                     <li class=""><a target="_blank" href="/zhi/">品牌特价</a></li>
                     <li class=""><a href="/xiu/">百强论坛</a></li>
@@ -155,278 +155,250 @@
     <script src="js/head2.js"></script>
 </div>
 <!--header-->
-<div class="index-banner">
+<section id="index">
+    <a :href="zhuhuichangUrl" target="_blank" onclick="check_cps(this);" isconvert="1">
+        <div class="index-banner">
 
-</div>
+        </div>
+    </a>
+    <div class="index-content">
 
-<div class="index-content" id="index">
-    <div class="content">
-        <section class="sec-hc">
-            <div class="sec-hc-big">
-                <a href="https://s.click.taobao.com/6hA9VQw" target="_blank">
-                    <img src="img/index-hc-1.png" alt="">
-                </a>
-                <a href="https://s.click.taobao.com/GaAjSQw" target="_blank">
-                    <img src="img/index-hc-2.png" alt="">
-                </a>
-            </div>
-            <div class="sec-hc-small">
+        <div class="content">
+            <section class="sec-hc">
+                <div class="sec-hc-big">
+                    <a :href="item.url" target="_blank" onclick="check_cps(this);"  isconvert="1" v-for="item in huicangBigList">
+                        <img :src="item.img" alt="">
+                    </a>
+                </div>
+                <div class="sec-hc-small">
+                    <ul>
+                        <li v-for="item in huicangSmallList">
+                            <a :href="item.url" target="_blank" onclick="check_cps(this);"  isconvert="1">
+                                <img :src="item.img" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <h1 class="title">
+                <img src="img/index-h1-huodong.png" alt="">
+            </h1>
+
+            <section class="sec-hd">
+                <ul>
+                    <li> 
+                        <a href="miaosha.html" target="_blank">
+                            <img src="img/index-hd-1.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="chaopianyi.html" target="_blank">
+                            <img src="img/index-hd-2.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="baokuan.html" target="_blank">
+                            <img src="img/index-hd-3.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="yushou.html" target="_blank">
+                            <img src="img/index-hd-4.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.qiang100.com/zhi/youhuiquan/" target="_blank">
+                            <img src="img/index-hd-5.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.qiang100.com/pinpai/" target="_blank">
+                            <img src="img/index-hd-6.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.qiang100.com/zhi/" target="_blank">
+                            <img src="img/index-hd-7.png" alt="">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.qiang100.com/index.php?g=&m=Zhi&a=history" target="_blank">
+                            <img src="img/index-hd-8.png" alt="">
+                        </a>
+                    </li>           
+                </ul>
+            </section>
+
+            <h1 class="title">
+                <img src="img/index-h1-dianshang.png" alt="">
+            </h1>
+            <!-- 电商大促 -->
+            <seciton class="sec-ds">
                 <ul>
                     <li>
-                        <a href="https://s.click.taobao.com/b7xKRQw" target="_blank">
-                            <img src="img/index-hc-3.png" alt="">
+                        <a target="_blank" href="https://union-click.jd.com/jdc?e=0&p=AyIHUytaJQMiQwpDBUoyS0IQWhkeHAxFBUYPCllHGAdFBwtSQEJLcitMV1pFIEVedB1LQglGa1YHWmUebR1VYVYAVwUzUF9PAgllM2UOHmlWGlscHhMDSRhfBAIXDFEbUBQDIgJdGVgUChMGVitbFAMTBlIbXxcKIjdVGmtebBM3UhxTEgQRBFceaxUGEQFWGVsUBRMCURhrEjISBVEaXxICGwdVGDVUMiI3ZStrFzIS&t=W1dCFFlQCxxQVwhPRE5XDVULR0VFUFcZPGsCQEpQcgseOgpbV1sI">
+                            <img src="./img/index-ds-1.png" alt="">
                         </a>
+                        <p>好货低至6.18</p>
                     </li>
                     <li>
-                        <a href="https://s.click.taobao.com/3AaKRQw" target="_blank">
-                            <img src="img/index-hc-4.png" alt="">
+                        <a href="https://sugs.suning.com/u2zDI1ht" target="_blank" >
+                            <img src="./img/index-ds-2.png" alt="">
                         </a>
+                        <p>全品聚惠 不止五折</p>
                     </li>
                     <li>
-                        <a href="https://s.click.taobao.com/YaFORQw" target="_blank">
-                            <img src="img/index-hc-5.png" alt="">
+                        <a href="https://prom.gome.com.cn/html/prodhtml/topics/201805/15/618gonglue.html" target="_blank">
+                            <img src="./img/index-ds-3.png" alt="">
                         </a>
+                        <p>全民疯抢48小时</p>
                     </li>
                     <li>
-                        <a href="https://s.click.taobao.com/WayNRQw" target="_blank">
-                            <img src="img/index-hc-6.png" alt="">
+                        <a href="https://www.amazon.cn/" target="_blank">
+                            <img src="./img/index-ds-4.png" alt="">
                         </a>
-                    </li>                    
-                    <li>
-                        <a href="https://s.click.taobao.com/Yh1DRQw" target="_blank">
-                            <img src="img/index-hc-7.png" alt="">
-                        </a>
-                    </li>                    
-                    <li>
-                        <a href="https://s.click.taobao.com/4z5ORQw" target="_blank">
-                            <img src="img/index-hc-8.png" alt="">
-                        </a>
+                        <p>海外购物,全球抢货</p>
                     </li>
                     <li>
-                        <a href="https://s.click.taobao.com/iYWCRQw" target="_blank">
-                            <img src="img/index-hc-9.png" alt="">
+                        <a href="http://sale.yhd.com/act/uAUxPqGcz3X.html" target="_blank">
+                            <img src="./img/index-ds-5.png" alt="">
                         </a>
-                    </li>                    
-                    <li>
-                        <a href="https://s.click.taobao.com/F4PJRQw" target="_blank">
-                            <img src="img/index-hc-10.png" alt="">
-                        </a>
-                    </li>                    
-                    <li>
-                        <a href="https://s.click.taobao.com/Q0HCRQw" target="_blank">
-                            <img src="img/index-hc-11.png" alt="">
-                        </a>
-                    </li><li>
-                        <a href="https://s.click.taobao.com/rlqBRQw" target="_blank">
-                            <img src="img/index-hc-12.png" alt="">
+                        <p>顶级盛典 满99减50</p>
+                    </li>
+                </ul>
+            </seciton>
+
+            <!-- 秒杀汇总 -->
+            <h1 class="title">
+                <img src="./img/index-h1-miaoshao.png" alt="">
+                <a href="miaosha.html" target="_blank">
+                    <img src="./img/index-h1-more.png" alt="">
+                </a>
+            </h1>
+            <section class="sec-list sec-ms" id="index-ms">
+                <ul>
+                    <li v-for= " item in msList">
+                        <a :href="item.pcurl" target="_blank" onclick="check_cps(this);"  isconvert="1">
+                            <div class="sec-img">
+                                <img :src="item.picpc" alt="">
+                            </div>
+                            <p class="p1">{{item.title}}</p>
+                            <p>秒杀价: <span>{{item.price}}</span></p>
+                            <p class="p3" v-if="item.isstart">正在疯狂秒杀中</p>
+                            <p class="p3" v-else="">{{item.onlinestarttime2}}开抢</p>
+                            <p>
+                                <span>提前加购,到点秒杀</span>
+                            </p>
                         </a>
                     </li>
                 </ul>
-            </div>
-        </section>
-        <h1 class="title">
-            <img src="img/index-h1-huodong.png" alt="">
-        </h1>
+            </section>
 
-        <section class="sec-hd">
-            <ul>
-                <li> 
-                    <a href="miaosha.html" target="_blank">
-                        <img src="img/index-hd-1.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="chaopianyi.html" target="_blank">
-                        <img src="img/index-hd-2.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="baokuan.html" target="_blank">
-                        <img src="img/index-hd-3.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="yushou.html" target="_blank">
-                        <img src="img/index-hd-4.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.qiang100.com/zhi/youhuiquan/" target="_blank">
-                        <img src="img/index-hd-5.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.qiang100.com/pinpai/" target="_blank">
-                        <img src="img/index-hd-6.png" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.qiang100.com/zhi/" target="_blank">
-                        <img src="img/index-hd-7.png" alt="">
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://www.qiang100.com/index.php?g=&m=Zhi&a=history" target="_blank">
-                        <img src="img/index-hd-8.png" alt="">
-                    </a>
-                </li>           
-            </ul>
-        </section>
-
-        <h1 class="title">
-            <img src="img/index-h1-dianshang.png" alt="">
-        </h1>
-        <!-- 电商大促 -->
-        <seciton class="sec-ds">
-            <ul>
-                <li>
-                    <a target="_blank" href="https://union-click.jd.com/jdc?e=0&p=AyIHUytaJQMiQwpDBUoyS0IQWhkeHAxFBUYPCllHGAdFBwtSQEJLcitMV1pFIEVedB1LQglGa1YHWmUebR1VYVYAVwUzUF9PAgllM2UOHmlWGlscHhMDSRhfBAIXDFEbUBQDIgJdGVgUChMGVitbFAMTBlIbXxcKIjdVGmtebBM3UhxTEgQRBFceaxUGEQFWGVsUBRMCURhrEjISBVEaXxICGwdVGDVUMiI3ZStrFzIS&t=W1dCFFlQCxxQVwhPRE5XDVULR0VFUFcZPGsCQEpQcgseOgpbV1sI">
-                        <img src="./img/index-ds-1.png" alt="">
-                    </a>
-                    <p>好货低至6.18</p>
-                </li>
-                <li>
-                    <a href="https://sugs.suning.com/u2zDI1ht" target="_blank" >
-                        <img src="./img/index-ds-2.png" alt="">
-                    </a>
-                    <p>全品聚惠 不止五折</p>
-                </li>
-                <li>
-                    <a href="##">
-                        <img src="./img/index-ds-3.png" alt="">
-                    </a>
-                    <p>全民疯抢48小时</p>
-                </li>
-                <li>
-                    <a href="##">
-                        <img src="./img/index-ds-4.png" alt="">
-                    </a>
-                    <p>海外购物,全球抢货</p>
-                </li>
-                <li>
-                    <a href="##">
-                        <img src="./img/index-ds-5.png" alt="">
-                    </a>
-                    <p>顶级盛典 满99减50</p>
-                </li>
-            </ul>
-        </seciton>
-
-        <!-- 秒杀汇总 -->
-        <h1 class="title">
-            <img src="./img/index-h1-miaoshao.png" alt="">
-            <a href="miaosha.html" target="_blank">
-                <img src="./img/index-h1-more.png" alt="">
-            </a>
-        </h1>
-        <section class="sec-list sec-ms" id="index-ms">
-            <ul>
-                <li v-for= " item in msList">
-                    <a :href="item.pcurl" target="_blank" onclick="check_cps(this);"  isconvert="1">
+            <!-- 便宜货 -->
+            <h1 class="title">
+                <img src="img/index-h1-pianyi.png" alt="">
+                <a href="chaopianyi.html" target="_blank"><img src="./img/index-h1-more.png" alt=""></a>
+            </h1>
+            <section class="sec-list sec-py" id="index-py">
+                <ul>
+                    <li v-for="item in pyList">
+                        <a :href="item.sourceUrlForOrder" target="_blank">
                         <div class="sec-img">
-                            <img :src="item.picpc" alt="">
+                            <img :src="item.logo" alt="">
                         </div>
-                        <p class="p1">{{item.title}}</p>
-                        <p>秒杀价: <span>{{item.price}}</span></p>
-                        <p class="p3" v-if="item.isstart">正在疯狂秒杀中</p>
-                        <p class="p3" v-else="">{{item.onlinestarttime2}}开抢</p>
+                        <p class="p1">{{item.name}}</p>
                         <p>
-                            <span  >提前秒杀 到店抢购</span>
+                            <span>{{item.price}}</span>
                         </p>
-                    </a>
-                </li>
-            </ul>
-        </section>
+                        <p class="p3"><em v-show="item.sales != 0" style="font-style: normal">已有{{item.sales}}抢购</em></p>
+                        <p>
+                            <span >前往抢购</span>
+                        </p>
+                        </a>
+                    </li>
+    
+                </ul>
+            </section>
 
-        <!-- 便宜货 -->
-        <h1 class="title">
-            <img src="img/index-h1-pianyi.png" alt="">
-            <a href="chaopianyi.html" target="_blank"><img src="./img/index-h1-more.png" alt=""></a>
-        </h1>
-        <section class="sec-list sec-py" id="index-py">
-            <ul>
-                <li v-for="item in pyList">
-                    <a :href="item.sourceUrlForOrder" target="_blank">
-                    <div class="sec-img">
-                        <img :src="item.logo" alt="">
-                    </div>
-                    <p class="p1">{{item.name}}</p>
-                    <p>
-                        <span>{{item.price}}</span>
-                    </p>
-                    <p class="p3"><em v-show="item.sales != 0" style="font-style: normal">已有{{item.sales}}抢购</em></p>
-                    <p>
-                        <span >前往抢购</span>
-                    </p>
-                    </a>
-                </li>
- 
-            </ul>
-        </section>
+            <!-- 爆款清单 -->
+            <h1 class="title">
+                <img src="img/index-h1-baokuan.png" alt="">
+                <a href="baokuan.html" target="_blank">
+                    <img src="./img/index-h1-more.png" alt="">
+                </a>
+            </h1>
+            <section class="sec-baokuan" id="index-bk">
+                <ul>
+                    <li v-for="item in bkList">
+                            <a :href="item.sourceUrlForOrder" target="_balnk">
+                                <div class="sec-img">
+                                    <img :src="item.logo" alt="">
+                                    <div class="sec-num" v-show="item.sales != 0">
+                                        已有{{item.sales}}人抢购
+                                    </div>
+                                </div>
+                                <p class="p1">{{item.name}}</p>
+                                <p class="p2">
+                                    <span>{{item.price}}</span>
 
-        <!-- 爆款清单 -->
-        <h1 class="title">
-            <img src="img/index-h1-baokuan.png" alt="">
-            <a href="baokuan.html" target="_blank">
-                <img src="./img/index-h1-more.png" alt="">
-            </a>
-        </h1>
-        <section class="sec-list sec-bk" id="index-bk">
-            <ul>
-                <li v-for="item in bkList">
-                    <a :href="item.sourceUrlForOrder" target="_blank" >
-                    <div class="sec-img">
-                        <img :src="item.logo" alt="">
-                        <div class="sec-num" v-show="item.sales != 0">
-                            已有{{item.sales}}人抢购
-                        </div>
-                    </div>
-                    <p class="p1">{{item.name}}</p>
-                    <p class="p2"> 
-                        <span>{{item.price}}</span>券后价
-                    </p>
-                    <p>
-                        <em v-show="item.discount" style="font-style: normal">
-                            <span>券{{item.discount}}</span>
-                        </em>                        
-                       <span class="bk-button">前往抢购</span>
-                    </p>
-                    </a>
-                </li>
-           </ul>
-        </section>
-        <h1 class="title">
-            <img src="img/index-h1-yushou.png" alt="">
-            <a href="yushou.html" target="_blank">
-                <img src="./img/index-h1-more.png" alt="">
-            </a>
-        </h1>
-        <section class="sec-list sec-ys " id="index-ys">
-            <ul>
-                <li v-for="item in ysList">
-                    <a :href="item.sourceUrlForOrder" target="_blank">
-                    <div class="sec-img">
-                        <img :src="item.logo" alt="">
-                    </div>
-                    <p class="p1">{{item.name}}</p>
-                    <p>
-                        <span>{{item.price}}</span>
-                    </p>
-                    <p class="p3" ><em v-show="item.discount" style="font-style: normal"> 预定立减{{item.discount}}元</em></p>
-                    <p>
-                        <span >前往抢购</span>
-                    </p>
-                    </a>
-                </li>
-  
+                                    <em v-show="item.couponValue" style="font-style:normal">券后价</em>
+                                </p>
+                                <p id="plast">
+                                    <em v-show="item.couponValue" style="font-style: normal">
+                                        <a :href="item.couponUrl" target="_blank">
+                                            <span>
+                                                券{{item.couponValue}}
+                                            </span>
+                                        </a>
+                                    </em>
+                                    <a :href="item.sourceUrlForOrder" target="_blank">
+                                        <span class="bk-button" :class="{ bkquan : !item.couponValue }">前往抢购</span>
+                                    </a>
+                                </p>
+                           </a>
+                    </li>
             </ul>
-        </section>
+            </section>
+            <!-- 预售好价 -->
+            <h1 class="title">
+                <img src="img/index-h1-yushou.png" alt="">
+                <a href="yushou.html" target="_blank">
+                    <img src="./img/index-h1-more.png" alt="">
+                </a>
+            </h1>
+            <section class="sec-yushou " id="index-ys">
+                <ul>
+                    <li v-for="item in ysList">
+                       <a :href="item.sourceUrlForOrder" target="_blank">
+                            <div class="sec-img">
+                                <img :src="item.logo" alt="">
+                            </div>
+                            <p class="p1">{{item.name}}</p>
+                            <p>
+                                <span>{{item.price}}</span>
+                            </p>
+                            <p class="p3" ><em v-show="0" style="font-style: normal"> 预定立减{{item.discount}}元</em></p>
+                            <p class="p-yushou">
+                                <em v-show="item.couponValue" style="font-style: normal">
+                                    <a :href="item.couponUrl" target="_blank">
+                                        <span>券{{item.couponValue}}</span>
+                                    </a>
+                                </em>
+                                <a :href="item.sourceUrlForOrder" target="_blank">
+                                    <span class="ys-button" :class="{ ysquan : !item.couponValue }">前往预订</span>
+                                </a>
+                            </p>
+                        </a>
+                    </li>
+    
+                </ul>
+            </section>
 
+        </div>
     </div>
-</div>
 
-
+</section>
 
 <div id="foot" class="foot">
     <div class="container text-center">
@@ -525,30 +497,99 @@
 </script>
 
 <script type="text/javascript" src="/public/js/cps.js?v=201711061600"></script>
-<script src="js/sidebar.js"></script>
 <script src="js/vue.min.js"></script>
+<script src="js/zhuhuichangUrl.js?v=2018052901"></script>  
 <script>
-
     var index = new Vue({
         el: '#index',
         data:{
+            //主会场列表
+            zhuhuichangUrl:zhuhuichangUrl,   //主会场url全局变量zhuhuichangUrl.js
+            huicangBigList:[
+                {'img':'img/index-hc-1.png','url':'https://s.click.taobao.com/3Yt8RQw'}, //天猫主会场
+                {'img':'img/index-hc-2.png','url':'https://s.click.taobao.com/Cq68RQw'}, //聚划算主会场        
+            ],
+            huicangSmallList: [
+                {'img':'img/index-hc-3.png','url':'https://s.click.taobao.com/LEf5IQw'}, //气质服饰
+                {'img':'img/index-hc-4.png','url':'https://s.click.taobao.com/dTh5IQw'}, //大牌美妆
+                {'img':'img/index-hc-5.png','url':'https://s.click.taobao.com/xzS7RQw'}, //母婴会场
+                {'img':'img/index-hc-6.png','url':'https://s.click.taobao.com/UaQ5IQw'}, //食品会场
+                {'img':'img/index-hc-7.png','url':'https://s.click.taobao.com/8795IQw'}, //数码电器
+                {'img':'img/index-hc-8.png','url':'https://s.click.taobao.com/F965IQw'}, //家用家电
+                {'img':'img/index-hc-9.png','url':'https://s.click.taobao.com/2cW6IQw'}, //潮流箱包
+                {'img':'img/index-hc-10.png','url':'https://s.click.taobao.com/UPf6IQw'},//运动户外
+                {'img':'img/index-hc-11.png','url':'https://s.click.taobao.com/YLS6RQw'},//家具生活
+                {'img':'img/index-hc-12.png','url':'https://s.click.taobao.com/NoZ6RQw'},//家装会场
+            ],
             bkUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_bkqd',
             msUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_mshz',
             pyUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_cjpy',
             ysUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_yshj',
             page:1,
             size:10,
-            category:"男装",
+            category:"",
             msList:[],
             pyList:[],
             bkList:[],
             ysList:[]
         },
         mounted:function(){
+            var vm = this;
             this.getMiaosha();
             this.getPianyi();
             this.getBaokuan();
             this.getYushou();
+
+            //qiang100.com来源
+            if (document.domain === 'www.qiang100.com') {
+                if(huicangUrlType == 'yr'){//预热
+                    vm.huicangBigList[0].url = 'https://s.click.taobao.com/RGd7VQw';//主会场
+                    vm.huicangBigList[1].url = 'https://s.click.taobao.com/gnGiEQw';//聚划算
+
+                    vm.huicangSmallList[0].url = 'https://s.click.taobao.com/iAGdEQw';//服饰
+                    vm.huicangSmallList[1].url = 'https://s.click.taobao.com/VwncEQw';//美妆
+                    vm.huicangSmallList[2].url = 'https://s.click.taobao.com/qLeiEQw';//母婴
+                    vm.huicangSmallList[3].url = 'https://s.click.taobao.com/vQbcEQw';//食品
+                    vm.huicangSmallList[4].url = 'https://s.click.taobao.com/BWXgEQw';//数码
+                    vm.huicangSmallList[5].url = 'https://s.click.taobao.com/qOfgEQw';//家电
+                    vm.huicangSmallList[6].url = 'https://s.click.taobao.com/sS2hEQw';//箱包
+                    vm.huicangSmallList[7].url = 'https://s.click.taobao.com/voHcEQw';//运动
+                    vm.huicangSmallList[8].url = 'https://s.click.taobao.com/debhEQw';//家具
+                    vm.huicangSmallList[9].url = 'https://s.click.taobao.com/IdmhEQw';//家装
+                }else if(huicangUrlType == '61'){//6.1
+                    vm.huicangBigList[0].url = 'https://s.click.taobao.com/H2fZEQw';//主会场
+                    vm.huicangBigList[1].url = 'https://s.click.taobao.com/HEHZEQw';//聚划算
+
+                    vm.huicangSmallList[0].url = 'https://s.click.taobao.com/msSYEQw';//服饰
+                    vm.huicangSmallList[1].url = 'https://s.click.taobao.com/64LREQw';//美妆
+                    vm.huicangSmallList[2].url = 'https://s.click.taobao.com/pHrQEQw';//母婴
+                    vm.huicangSmallList[3].url = 'https://s.click.taobao.com/6dlREQw';//食品
+                    vm.huicangSmallList[4].url = 'https://s.click.taobao.com/b0GPEQw';//数码
+                    vm.huicangSmallList[5].url = 'https://s.click.taobao.com/dhkPEQw';//家电
+                    vm.huicangSmallList[6].url = 'https://s.click.taobao.com/QaGOEQw';//箱包
+                    vm.huicangSmallList[7].url = 'https://s.click.taobao.com/m6GYEQw';//运动
+                    vm.huicangSmallList[8].url = 'https://s.click.taobao.com/gNvPEQw';//家具
+                    vm.huicangSmallList[9].url = 'https://s.click.taobao.com/K7PQEQw';//家装
+                }
+            }else{
+                if(huicangUrlType == 'yr'){//预热
+                    //默认链接
+                }else if(huicangUrlType == '61'){//6.1
+                    vm.huicangBigList[0].url = 'https://s.click.taobao.com/YGPNEQw';//主会场
+                    vm.huicangBigList[1].url = 'https://s.click.taobao.com/YqGNEQw';//聚划算
+
+                    vm.huicangSmallList[0].url = 'https://s.click.taobao.com/HNxLEQw';//服饰
+                    vm.huicangSmallList[1].url = 'https://s.click.taobao.com/3qwJEQw';//美妆
+                    vm.huicangSmallList[2].url = 'https://s.click.taobao.com/I4VMEQw';//母婴
+                    vm.huicangSmallList[3].url = 'https://s.click.taobao.com/gj3KEQw';//食品
+                    vm.huicangSmallList[4].url = 'https://s.click.taobao.com/KEsMEQw';//数码
+                    vm.huicangSmallList[5].url = 'https://s.click.taobao.com/JhNKEQw';//家电
+                    vm.huicangSmallList[6].url = 'https://s.click.taobao.com/uamNEQw';//箱包
+                    vm.huicangSmallList[7].url = 'https://s.click.taobao.com/phhLEQw';//运动
+                    vm.huicangSmallList[8].url = 'https://s.click.taobao.com/ocMLEQw';//家具
+                    vm.huicangSmallList[9].url = 'https://s.click.taobao.com/tcVKEQw';//家装
+                }
+            }
         },
         methods:{
             loadPage: function (apiUrl,page, size, category, callback) {
@@ -556,8 +597,7 @@
                 category = encodeURIComponent (category);
                 $.ajax({
                     type: "GET",
-                    url: apiUrl+"?page=" + page +
-                        "&size=" + size + "&catagory=" + category,
+                    url: apiUrl + "?page=" + page + "&size=" + size + "&catagory=" + category,
                     dataType: "json",
                     success: function (res) {
                         if(res.code = 100){
@@ -599,5 +639,10 @@
         }
     })
 </script>
+<script src="js/sidebar.js?v=2018052901"></script>
+
+<!-- 全屏弹出广告 -->
+<script type="text/javascript" data-no-merge="1" id="async_loader_plus_common_pop"> (function(){ var url = "/index.php?g=Home&m=Helper&a=include_async&file=Public%2Fpop%2Fcommon%2Fmain&source="+(encodeURIComponent(window.location.href))+"&ts="+(new Date().getTime()); var loaderId = "async_loader_plus_common_pop"; var loadX = function($) { $.get(url,function(r){ if(!r) { return; } $("#"+loaderId).after(r); $("#"+loaderId).remove(); }); }; if (typeof $ != "undefined") { loadX($); } else { console.log("jquery not found, async loader failed"); } })();</script>
+
 </body>
 </html>

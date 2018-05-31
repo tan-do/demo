@@ -94,7 +94,7 @@
             <div class="nav-in">
                 <ul class="nav-in-left">
                     <li class="first"></li>
-                    <li class="hover index"><a>首页</a></li>
+                    <li class="hover index"><a href="/">首页</a></li>
                     <li class=""><a href="/pinpai/">选品牌</a></li>
                     <li class=""><a target="_blank" href="/zhi/">品牌特价</a></li>
                     <li class=""><a href="/xiu/">百强论坛</a></li>
@@ -157,20 +157,18 @@
 <!--header-->
 
 <secion id="miaosha">
-    <div class="miaosha-banner">
-        <div class="content">
-            <div class="miaosha-time">
-                <p>距6月01日0点开抢还有</p>
-                <p><span>{{times.d}}</span><em class="em-1">天</em><span>{{times.h}}</span><em>:</em><span>{{times.m}}</span><em>:</em><span>{{times.s}}</span></p>
+
+    <a :href="zhuhuichangUrl" target="_blank" onclick="check_cps(this);" isconvert="1">
+        <div class="miaosha-banner">
+            <div class="content">
+    <!--             <div class="miaosha-time">
+                    <p>距6月01日0点开抢还有</p>
+                    <p><span>{{times.d}}</span><em class="em-1">天</em><span>{{times.h}}</span><em>:</em><span>{{times.m}}</span><em>:</em><span>{{times.s}}</span></p>
+                </div> -->
             </div>
         </div>
-    </div>
+    </a>
 
-    <div class="miaosha-img">
-        <div class="content">
-            <img src="./img/miaosha-img.png" alt="">
-        </div>
-    </div>
 
     <div class="miaosha-content">
         <div class="content">
@@ -188,7 +186,7 @@
                             <p class="p3" v-if="item.isstart">正在疯狂秒杀中</p>
                             <p class="p3" v-else="">{{item.onlinestarttime2}}开抢</p>
                             <p>
-                                <span  >提前秒杀 到店抢购</span>
+                                <span>提前加购，到点秒杀</span>
                             </p>
                         </a>
                     </li>
@@ -301,7 +299,8 @@
 </script>
 
 <script type="text/javascript" src="/public/js/cps.js?v=201711061600"></script>
-<script src="js/sidebar.js"></script>
+<script src="js/zhuhuichangUrl.js?v=2018052901"></script>
+<script src="js/sidebar.js?v=2018052901"></script>
 <script src="js/vue.min.js"></script>
 <script>
     var miaosha = new Vue({
@@ -313,6 +312,7 @@
                 'm': 0,
                 's': 0
             },
+            zhuhuichangUrl:zhuhuichangUrl, //主会场url全局变量zhuhuichangUrl.js
             apiUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_mshz',
             productList:[],
             page:2,
@@ -321,7 +321,7 @@
             busy:false,            
         },
         created: function () {
-            this.daojishi();
+            //this.daojishi();
             this.defaultLoad();
             this.loadMore();
         },
@@ -397,7 +397,7 @@
                     var scrollTop = $(this).scrollTop();　　
                     var scrollHeight = $(document).height();　　
                     var windowHeight = $(this).height();　　
-                    if (scrollTop + windowHeight == scrollHeight) {
+                    if (scrollTop + windowHeight >= scrollHeight - 50) {
                         console.log('到底了')
 
                         if (!_this.busy) {
@@ -428,6 +428,8 @@
     });
 </script>
 
+<!-- 全屏弹出广告 -->
+<script type="text/javascript" data-no-merge="1" id="async_loader_plus_common_pop"> (function(){ var url = "/index.php?g=Home&m=Helper&a=include_async&file=Public%2Fpop%2Fcommon%2Fmain&source="+(encodeURIComponent(window.location.href))+"&ts="+(new Date().getTime()); var loaderId = "async_loader_plus_common_pop"; var loadX = function($) { $.get(url,function(r){ if(!r) { return; } $("#"+loaderId).after(r); $("#"+loaderId).remove(); }); }; if (typeof $ != "undefined") { loadX($); } else { console.log("jquery not found, async loader failed"); } })();</script>
 
 </body>
 </html>

@@ -94,7 +94,7 @@
             <div class="nav-in">
                 <ul class="nav-in-left">
                     <li class="first"></li>
-                    <li class="hover index"><a>首页</a></li>
+                    <li class="hover index"><a href="/">首页</a></li>
                     <li class=""><a href="/pinpai/">选品牌</a></li>
                     <li class=""><a target="_blank" href="/zhi/">品牌特价</a></li>
                     <li class=""><a href="/xiu/">百强论坛</a></li>
@@ -155,10 +155,13 @@
     <script src="js/head2.js"></script>
 </div>
 <!--header-->
-<div class="yushou-banner">
-
-</div>
 <section id="yushou">
+    <a :href="zhuhuichangUrl" target="_blank" onclick="check_cps(this);" isconvert="1">
+        <div class="yushou-banner">
+
+        </div>
+    </a>
+
     <div class="tab-link tab-yushou">
         <div class="content">
             <ul>
@@ -175,7 +178,7 @@
     </div>
     <div class="yushou-content">
         <div class="content">
-            <section class="sec-list sec-ys">
+            <section class="sec-yushou">
                 <ul>
                     <li v-for="item in productList">
                         <a :href="item.sourceUrlForOrder" target="_blank">
@@ -186,9 +189,16 @@
                             <p>
                                 <span>{{item.price}}</span>
                             </p>
-                            <p class="p3" ><em v-show="item.discount" style="font-style: normal"> 预定立减{{item.discount}}元</em></p>
-                            <p>
-                                <span >前往抢购</span>
+                            <p class="p3" ><em v-show="0" style="font-style: normal"> 预定立减{{item.discount}}元</em></p>
+                            <p class="p-yushou">
+                                <em v-show="item.couponValue" style="font-style: normal">
+                                    <a :href="item.couponUrl" target="_blank">
+                                        <span>券{{item.couponValue}}</span>
+                                    </a>
+                                </em>
+                                <a :href="item.sourceUrlForOrder" target="_blank">
+                                    <span class="ys-button" :class="{ ysquan : !item.couponValue }">前往预订</span>
+                                </a>
                             </p>
                         </a>
                     </li>
@@ -305,12 +315,14 @@
 </script>
 
 <script type="text/javascript" src="/public/js/cps.js?v=201711061600"></script>
-<script src="js/sidebar.js"></script>
+<script src="js/zhuhuichangUrl.js?v=2018052901"></script>
+<script src="js/sidebar.js?v=2018052901"></script>
 <script src="js/vue.min.js"></script>
 <script>
     var yushou = new Vue({
         el:'#yushou',
         data:{
+            zhuhuichangUrl:zhuhuichangUrl, //主会场url全局变量zhuhuichangUrl.js
             apiUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_yshj',
             productList: [],
             page:2,
@@ -364,7 +376,7 @@
                 　　var scrollTop = $(this).scrollTop();
                 　　var scrollHeight = $(document).height();
                 　　var windowHeight = $(this).height();
-                　　if(scrollTop + windowHeight == scrollHeight){
+                　　if(scrollTop + windowHeight >= scrollHeight - 50){
                         console.log('到底了')    
 
                         if (!_this.busy) {
@@ -389,5 +401,9 @@
         }
     })
 </script>
+
+<!-- 全屏弹出广告 -->
+<script type="text/javascript" data-no-merge="1" id="async_loader_plus_common_pop"> (function(){ var url = "/index.php?g=Home&m=Helper&a=include_async&file=Public%2Fpop%2Fcommon%2Fmain&source="+(encodeURIComponent(window.location.href))+"&ts="+(new Date().getTime()); var loaderId = "async_loader_plus_common_pop"; var loadX = function($) { $.get(url,function(r){ if(!r) { return; } $("#"+loaderId).after(r); $("#"+loaderId).remove(); }); }; if (typeof $ != "undefined") { loadX($); } else { console.log("jquery not found, async loader failed"); } })();</script>
+
 </body>
 </html>

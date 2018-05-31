@@ -18,7 +18,8 @@
     <meta property="og:title" content="百强网618省钱攻略-秒杀汇总">
     <meta property="og:url" content="/huodong/618/2018/chaopianyi.html">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=2017042102" />
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=20170531" />
+    <link rel="stylesheet" type="text/css" href="css/com618bar.css?v=2017042102" />
     <script src="js/head.js"></script>
     <script type="text/javascript" src="https://tajs.qq.com/stats?sId=59300190" charset="UTF-8"></script>
 </head>
@@ -59,9 +60,9 @@
     <div class="viewport-new miaosha" >
         <!--banner-->
         <div class="top-banner">
-            <a href="https://s.click.taobao.com/8eD8VQw" onclick="check_cps(this);" isconvert="1">
+            <a :href="zhuhuicang" onclick="check_cps(this);" isconvert="1">
             <img src="./img/banner_mshz.png"></a>
-            <div class="daojishi">
+            <!--<div class="daojishi">
                 <div class="time1">距6月1日0点开抢还有</div>
                 <div class="time2">
                     <span>{{times.d}}</span> 天
@@ -72,7 +73,7 @@
             </div>
             <div>
                 <img src="./img/msgl_1.png">
-            </div>
+            </div>-->
         </div>
         <!--秒杀汇总-->
         <div class="main-box main-box2 miaosha-list">
@@ -85,7 +86,7 @@
                             <div class="price">秒杀价：<span>{{item.price}}</span></div>
                             <div class="time" v-if="item.isstart">正在疯狂秒杀中</div>
                             <div class="time" v-else="">{{item.onlinestarttime2}}开抢</div>
-                            <div class="button button_ms">提前秒杀 到店抢购</div>
+                            <div class="button button_ms">提前加购，到点秒杀</div>
                         </div>
                     </a>
                 </li>
@@ -100,6 +101,10 @@
 <script src="js/NativeShare.js"></script>
 <script type="text/javascript" src="/public/js/cookie.js?v=201711061600"></script>
 <script>
+    var zhuhuichangUrl = "";
+    var huicangUrlType = 'yr';//链接类型，默认参数：yr 预热，61 6.1日
+</script>
+<script>
     var app = new Vue({
         el: '#app',
         data: {
@@ -109,11 +114,38 @@
             size:20,
             category:'',
             loading : false,
+            zhuhuicang:'https://s.click.taobao.com/kQU8RQw',
+            lastTime:0,
         },
         created: function () {
             var vm = this;
+
+            //qiang100.com来源
+            if (document.domain === 'm.qiang100.com') {
+                if(huicangUrlType == 'yr'){//预热
+                    vm.zhuhuicang = 'https://s.click.taobao.com/AJD7VQw';
+                }else if(huicangUrlType == '61'){//6.1
+                    vm.zhuhuicang = 'https://s.click.taobao.com/uLbZEQw';
+                }
+            }else{
+                if (window.location.hash === '#xxl') {  //信息流来源
+                    if(huicangUrlType == 'yr'){//预热
+                        vm.zhuhuicang = 'https://s.click.taobao.com/WdZ4IQw';
+                    }else if(huicangUrlType == '61'){//6.1
+                        vm.zhuhuicang = 'https://s.click.taobao.com/XWHAEQw';
+                    }
+                }else{
+                    if(huicangUrlType == 'yr'){//预热
+                        vm.zhuhuicang = 'https://s.click.taobao.com/kQU8RQw';
+                    }else if(huicangUrlType == '61'){//6.1
+                        vm.zhuhuicang = 'https://s.click.taobao.com/z4MNEQw';
+                    }
+                }
+            }
+
             vm.loadPage(true);
             vm.daojishi();
+            zhuhuichangUrl = vm.zhuhuicang;
             window.onscroll = function () {
                 vm.scroll();
             }
@@ -127,6 +159,7 @@
                     page:vm.page,
                     size:vm.size,
                     category:vm.category,
+                    lastTime:vm.lastTime,
                 } ,function (data) {
                     if(data.code == 100){
                         var ismore = false;
@@ -137,6 +170,7 @@
                             vm.bkqdList.push(data.data.productList[ii]);
                             ismore = true;
                         }
+                        vm.lastTime = data.data.lastTime;
                         if(ismore){
                             vm.loading = false;
                         }else{
@@ -154,7 +188,7 @@
                 var vm = this;
                 var _nowPos = $(window).scrollTop();
                 // 滚到底部动态加载下页
-                if(((_nowPos +$(window).height())+100) >= $(document).height()){
+                if(((_nowPos +$(window).height())+1000) >= $(document).height()){
                     if(vm.loading == false){
                         vm.loading = true;
                         vm.page ++;
@@ -222,8 +256,13 @@
         }
     }
 </script>
+
+<!-- 全屏弹出广告 -->
+<script type="text/javascript" data-no-merge="1" id="async_loader_plus_common_pop"> (function(){ var url = "/index.php?g=Home&m=Helper&a=include_async&file=Public%2Fpop%2Fcommon%2Fmain&source="+(encodeURIComponent(window.location.href))+"&ts="+(new Date().getTime()); var loaderId = "async_loader_plus_common_pop"; var loadX = function($) { $.get(url,function(r){ if(!r) { return; } $("#"+loaderId).after(r); $("#"+loaderId).remove(); }); }; if (typeof $ != "undefined") { loadX($); } else { console.log("jquery not found, async loader failed"); } })();</script>
+
 <script type="text/javascript" src="/public/js/ads.js"></script>
-<script type="text/javascript" src="/public/js/cps.js?v=201805261202"></script>
-<script src="js/foot.js?v=2018052601"></script>
+<script type="text/javascript" src="/public/js/cps.js?v=2018052902"></script>
+<script src="js/foot.js?v=2018052902"></script>
+<script src="js/com618bar.js?v=2018052902"></script>
 </body>
 </html>

@@ -94,7 +94,7 @@
             <div class="nav-in">
                 <ul class="nav-in-left">
                     <li class="first"></li>
-                    <li class="hover index"><a>首页</a></li>
+                    <li class="hover index"><a href="/">首页</a></li>
                     <li class=""><a href="/pinpai/">选品牌</a></li>
                     <li class=""><a target="_blank" href="/zhi/">品牌特价</a></li>
                     <li class=""><a href="/xiu/">百强论坛</a></li>
@@ -157,10 +157,11 @@
 <!--header-->
 
 <section id="pianyi">
-    <div class="pianyi-banner">
+    <a :href="zhuhuichangUrl" target="_blank" onclick="check_cps(this);" isconvert="1">
+        <div class="pianyi-banner">
 
-    </div>
-
+        </div>
+    </a>
     <div class="tab-link">
         <div class="content">
             <ul>
@@ -301,14 +302,15 @@
 </script>
 
 <script type="text/javascript" src="/public/js/cps.js?v=201711061600"></script>
-<script src="js/sidebar.js"></script>
-
+<script src="js/zhuhuichangUrl.js?v=2018052901"></script>
+<script src="js/sidebar.js?v=2018052901"></script>
 <script src="js/vue.min.js"></script>
 
 <script>
     var pianyi = new Vue({
         el: '#pianyi',
         data: {
+            zhuhuichangUrl:zhuhuichangUrl, //主会场url全局变量zhuhuichangUrl.js
             apiUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_cjpy',
             productList: [],
             page: 2,
@@ -359,7 +361,7 @@
                     var scrollTop = $(this).scrollTop();　　
                     var scrollHeight = $(document).height();　　
                     var windowHeight = $(this).height();　　
-                    if (scrollTop + windowHeight == scrollHeight) {
+                    if (scrollTop + windowHeight >= scrollHeight - 50) {
                         console.log('到底了')
                         if (!_this.busy) {
                             _this.busy = true;
@@ -384,6 +386,8 @@
     })
 </script>
 
+<!-- 全屏弹出广告 -->
+<script type="text/javascript" data-no-merge="1" id="async_loader_plus_common_pop"> (function(){ var url = "/index.php?g=Home&m=Helper&a=include_async&file=Public%2Fpop%2Fcommon%2Fmain&source="+(encodeURIComponent(window.location.href))+"&ts="+(new Date().getTime()); var loaderId = "async_loader_plus_common_pop"; var loadX = function($) { $.get(url,function(r){ if(!r) { return; } $("#"+loaderId).after(r); $("#"+loaderId).remove(); }); }; if (typeof $ != "undefined") { loadX($); } else { console.log("jquery not found, async loader failed"); } })();</script>
 
 </body>
 </html>

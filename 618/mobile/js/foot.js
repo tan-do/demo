@@ -1,6 +1,15 @@
 //淘点金
 (function(win,doc){
-    win.bq_page_tbPid = 'mm_112928821_17178470_71528365';//qiang100.com.cn-Y09999
+    win.bq_page_tbPid = '';
+    if (win.location.host === 'm.qiang100.com' ) {
+        win.bq_page_tbPid = 'mm_112928821_13812316_71502604';//qiang100.com-Y09999
+    } else {
+        if (win.location.hash === '#xxl') {
+            win.bq_page_tbPid = 'mm_112928821_17178470_71524414';//qiang100.com.cn-Y09997
+        } else {
+            win.bq_page_tbPid = 'mm_112928821_17178470_71528365';//qiang100.com.cn-Y09999
+        }
+    }
 
     var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
     if (!win.alimamatk_show) {
@@ -19,14 +28,7 @@
     win.alimamatk_onload.push(o);
 })(window,document);
 
-/*更多会场*/
-function toOpenHc() {
-    if($('.layer').is(':hidden')){
-        $('.layer').show();
-    }else{
-        $('.layer').hide();
-    }
-}
+
 
 function toShare() {
     if($('#share').is(':hidden')){
@@ -73,74 +75,7 @@ $('.right-menu-bg').click(function(){
 });
 
 
-/*公共底部*/
-var comfoot = '<div class="bottom-nav">\
-    <ul class="flex flex-align-center">\
-    <a href="./index.html" >\
-    <li class="flex flex-pack-center flex-align-center">618省钱攻略</li></a>\
-    <li class="flex flex-pack-center flex-align-center morehc" onclick="toOpenHc()"><i class="hc"></i>更多会场</li>\
-    <a href="https://www.qiang100.com/public/app/site/index.html" ><li class="flex flex-pack-center flex-align-center last"><i class="app"></i>打开APP</li></a>\
-    </ul>\
-    </div>\
-    <div class="share-bg"></div>\
-    <div id="share">\
-    <ul class="share">\
-    <li onclick="call()"><img src="./img/fxtc_3.png"><div>通用分享</div></li>\
-    <li onclick="call(\'wechatFriend\')"><img src="./img/fxtc_1.png"><div>微信好友</div></li>\
-    <li onclick="call(\'wechatTimeline\')"><img src="./img/fxtc_2.png"><div>朋友圈</div></li>\
-    <li onclick="call(\'qqFriend\')"><img src="./img/fxtc_4.png"><div>QQ</div></li>\
-    <li onclick="call(\'qZone\')"><img src="./img/fxtc_5.png"><div>QQ空间</div></li>\
-    <li onclick="call(\'weibo\')"><img src="./img/fxtc_6.png"><div>微博</div></li>\
-    </ul>\
-    </div>\
-    <div class="layer">\
-    <i class="layer-icon"></i>\
-    <div class="layer-content">\
-    <div class="layer-link">\
-    <p>\
-    <a href="https://s.click.taobao.com/8eD8VQw"  onclick="check_cps(this);" isconvert="1">\
-    <img src="./img/index/tc_1.png" alt="">\
-    </a>\
-    <a href="https://union-click.jd.com/jdc?e=0&p=AyIHUytaJQMiQwpDBUoyS0IQWhkeHAxFBUYPCllHGAdFBwtSQEJLcitMV1pFIEVedB1LQglGa1YHWmUebR1VYVYAVwUzUF9PAgllM2UOHmlWGlscHhMDSRhfBAIXDFEbUBQDIgJdGVgUChMGVitbFAMTBlIbXxcKIjdVGmtebBM3UhxTEgQRBFceaxUGEQFWGVsUBRMCURhrEjISBVEaXxICGwdVGDVUMiI3ZStrFzIS&t=W1dCFFlQCxxQVwhPRE5XDVULR0VFUFcZPGsCQEpQcgseOgpbV1sI">\
-    <img src="./img/index/tc_2.png" alt="">\
-    </a>\
-    </p>\
-    <p>\
-    <a href="./miaosha.html" >\
-    <img src="./img/index/tc_3.png" alt="">\
-    </a>\
-    </p>\
-    <p>\
-    <a href="./baokuan.html" >\
-    <img src="./img/index/tc_4.png" alt="">\
-    </a>\
-    <a href="./chaopianyi.html" >\
-    <img src="./img/index/tc_5.png" alt="">\
-    </a>\
-    <a href="./yushou.html" >\
-    <img src="./img/index/tc_6.png" alt="">\
-    </a>\
-    </p>\
-    </div>\
-    </div>';
 
-$('.comfoot').html(comfoot);
-
-setTimeout(function () {
-    /*分享开关*/
-    $('.share-bg').click(function () {
-        $('.share-bg').hide();
-        $('#share').slideUp(300);
-    });
-
-    $('.layer-content').on('click',function(e){
-        e.stopPropagation()
-    });
-
-    $('.layer').on('click',function(){
-        $(this).hide()
-    })
-},500);
 
 
 //自定义统计
