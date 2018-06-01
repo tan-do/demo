@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <script src="js/head2.js"></script>
+    <script src="js/head2.js?v=20180602"></script>
 </div>
 <!--header-->
 <section id="index">
@@ -303,18 +303,18 @@
             <section class="sec-list sec-py" id="index-py">
                 <ul>
                     <li v-for="item in pyList">
-                        <a :href="item.sourceUrlForOrder" target="_blank">
-                        <div class="sec-img">
-                            <img :src="item.logo" alt="">
-                        </div>
-                        <p class="p1">{{item.name}}</p>
-                        <p>
-                            <span>{{item.price}}</span>
-                        </p>
-                        <p class="p3"><em v-show="item.sales != 0" style="font-style: normal">已有{{item.sales}}抢购</em></p>
-                        <p>
-                            <span >前往抢购</span>
-                        </p>
+                        <a :href="item.sourceUrlForOrder" target="_blank" onclick="check_cps(this);"  isconvert="1">
+                            <div class="sec-img">
+                                <img :src="item.logo" alt="">
+                            </div>
+                            <p class="p1">{{item.name}}</p>
+                            <p>
+                                <span>{{item.price}}</span>
+                            </p>
+                            <p class="p3"><em v-show="item.sales != 0" style="font-style: normal">已有{{item.sales}}抢购</em></p>
+                            <p>
+                                <span >前往抢购</span>
+                            </p>
                         </a>
                     </li>
     
@@ -331,7 +331,7 @@
             <section class="sec-baokuan" id="index-bk">
                 <ul>
                     <li v-for="item in bkList">
-                            <a :href="item.sourceUrlForOrder" target="_balnk">
+                            <a :href="item.sourceUrlForOrder" target="_balnk" onclick="check_cps(this);"  isconvert="1">
                                 <div class="sec-img">
                                     <img :src="item.logo" alt="">
                                     <div class="sec-num" v-show="item.sales != 0">
@@ -346,13 +346,13 @@
                                 </p>
                                 <p id="plast">
                                     <em v-show="item.couponValue" style="font-style: normal">
-                                        <a :href="item.couponUrl" target="_blank">
+                                        <a :href="item.couponUrl" target="_blank" onclick="check_cps(this);"  isconvert="1">
                                             <span>
                                                 券{{item.couponValue}}
                                             </span>
                                         </a>
                                     </em>
-                                    <a :href="item.sourceUrlForOrder" target="_blank">
+                                    <a :href="item.sourceUrlForOrder" target="_blank" onclick="check_cps(this);"  isconvert="1">
                                         <span class="bk-button" :class="{ bkquan : !item.couponValue }">前往抢购</span>
                                     </a>
                                 </p>
@@ -370,7 +370,7 @@
             <section class="sec-yushou " id="index-ys">
                 <ul>
                     <li v-for="item in ysList">
-                       <a :href="item.sourceUrlForOrder" target="_blank">
+                       <a :href="item.sourceUrlForOrder" target="_blank" onclick="check_cps(this);"  isconvert="1">
                             <div class="sec-img">
                                 <img :src="item.logo" alt="">
                             </div>
@@ -381,11 +381,11 @@
                             <p class="p3" ><em v-show="0" style="font-style: normal"> 预定立减{{item.discount}}元</em></p>
                             <p class="p-yushou">
                                 <em v-show="item.couponValue" style="font-style: normal">
-                                    <a :href="item.couponUrl" target="_blank">
+                                    <a :href="item.couponUrl" target="_blank" onclick="check_cps(this);"  isconvert="1">
                                         <span>券{{item.couponValue}}</span>
                                     </a>
                                 </em>
-                                <a :href="item.sourceUrlForOrder" target="_blank">
+                                <a :href="item.sourceUrlForOrder" target="_blank" onclick="check_cps(this);"  isconvert="1">
                                     <span class="ys-button" :class="{ ysquan : !item.couponValue }">前往预订</span>
                                 </a>
                             </p>
@@ -498,13 +498,14 @@
 
 <script type="text/javascript" src="/public/js/cps.js?v=201711061600"></script>
 <script src="js/vue.min.js"></script>
-<script src="js/zhuhuichangUrl.js?v=2018052901"></script>  
+<script src="js/zhuhuichangUrl.js?v=201805311203"></script>
 <script>
     var index = new Vue({
         el: '#index',
         data:{
             //主会场列表
             zhuhuichangUrl:zhuhuichangUrl,   //主会场url全局变量zhuhuichangUrl.js
+            huichangapiUrl:'https://www.qiang100.com/HuodongApi/hd618/hd2018_hc_url',    //后台接口主会场url
             huicangBigList:[
                 {'img':'img/index-hc-1.png','url':'https://s.click.taobao.com/3Yt8RQw'}, //天猫主会场
                 {'img':'img/index-hc-2.png','url':'https://s.click.taobao.com/Cq68RQw'}, //聚划算主会场        
@@ -539,6 +540,8 @@
             this.getPianyi();
             this.getBaokuan();
             this.getYushou();
+
+            //this.getHuiChang();  
 
             //qiang100.com来源
             if (document.domain === 'www.qiang100.com') {
@@ -605,6 +608,35 @@
                         }
                     }
                 });
+            },
+            //获取主会场url
+            getHuiChang(){
+                var vm = this;
+                $.ajax({
+                    type: "GET",
+                    url: _this.huichangapiUrl,
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code = 100){
+                            var _tmpUrl = data.data.urls;
+                            vm.huicangBigList[0].url = _tmpUrl['zhc'];//主会场
+                            vm.huicangBigList[1].url = _tmpUrl['jhc'];//聚划算
+
+                            vm.huicangSmallList[0].url = _tmpUrl['fs'];//服饰
+                            vm.huicangSmallList[1].url = _tmpUrl['mz'];//美妆
+                            vm.huicangSmallList[2].url = _tmpUrl['my'];//母婴
+                            vm.huicangSmallList[3].url = _tmpUrl['sp'];//食品
+                            vm.huicangSmallList[4].url = _tmpUrl['sm'];//数码
+                            vm.huicangSmallList[5].url = _tmpUrl['jd'];//家电
+                            vm.huicangSmallList[6].url = _tmpUrl['xb'];//箱包
+                            vm.huicangSmallList[7].url = _tmpUrl['yd'];//运动
+                            vm.huicangSmallList[8].url = _tmpUrl['jj'];//家具
+                            vm.huicangSmallList[9].url = _tmpUrl['jz'];//家装
+                            
+                        }
+                    }
+                });
+
             },
 
             getMiaosha:function(){

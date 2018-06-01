@@ -1,6 +1,6 @@
 //主会场url
 var zhuhuichangUrl = "https://s.click.taobao.com/kQU8RQw";
-var huicangUrlType = 'yr';//链接类型，默认参数：yr 预热，61 6.1日
+var huicangUrlType = '61';//链接类型，默认参数：yr 预热，61 6.1日
 //qiang100.com来源
 if (document.domain === 'www.qiang100.com') {
     if(huicangUrlType == 'yr'){//预热

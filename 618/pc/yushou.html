@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <script src="js/head2.js"></script>
+    <script src="js/head2.js?v=20180602"></script>
 </div>
 <!--header-->
 <section id="yushou">
@@ -181,7 +181,7 @@
             <section class="sec-yushou">
                 <ul>
                     <li v-for="item in productList">
-                        <a :href="item.sourceUrlForOrder" target="_blank">
+                        <a :href="item.sourceUrlForOrder" target="_blank" onclick="check_cps(this);"  isconvert="1">
                             <div class="sec-img">
                                 <img :src="item.logo" alt="">
                             </div>
@@ -192,11 +192,11 @@
                             <p class="p3" ><em v-show="0" style="font-style: normal"> 预定立减{{item.discount}}元</em></p>
                             <p class="p-yushou">
                                 <em v-show="item.couponValue" style="font-style: normal">
-                                    <a :href="item.couponUrl" target="_blank">
+                                    <a :href="item.couponUrl" target="_blank" onclick="check_cps(this);"  isconvert="1">
                                         <span>券{{item.couponValue}}</span>
                                     </a>
                                 </em>
-                                <a :href="item.sourceUrlForOrder" target="_blank">
+                                <a :href="item.sourceUrlForOrder" target="_blank" onclick="check_cps(this);"  isconvert="1">
                                     <span class="ys-button" :class="{ ysquan : !item.couponValue }">前往预订</span>
                                 </a>
                             </p>
@@ -315,8 +315,8 @@
 </script>
 
 <script type="text/javascript" src="/public/js/cps.js?v=201711061600"></script>
-<script src="js/zhuhuichangUrl.js?v=2018052901"></script>
-<script src="js/sidebar.js?v=2018052901"></script>
+<script src="js/zhuhuichangUrl.js?v=201805311202"></script>
+<script src="js/sidebar.js?v=201805311202"></script>
 <script src="js/vue.min.js"></script>
 <script>
     var yushou = new Vue({
